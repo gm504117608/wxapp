@@ -11,8 +11,14 @@
 
 .demo__icon {
   margin: 0 auto;
-  width: 108px;
-  height: 108px;
+  width: 98px;
+  height: 98px;
   background: #ddd;
   border-radius: 4px;
+}
+
+.demo__text {
+  margin: 0 auto;
+  padding: 10px 0;
+  text-align: center;
 }

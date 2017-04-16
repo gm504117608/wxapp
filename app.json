@@ -1,12 +1,30 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/user-center/userCenterIndex"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "郭尼玛",
     "navigationBarTextStyle":"black"
-  }
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "",
+      "iconPath":"pages/resources/images/home1.png",
+      "selectedIconPath":"pages/resources/images/home2.png"
+    }, {
+      "pagePath": "pages/user-center/userCenterIndex",
+      "text": "",
+      "iconPath":"pages/resources/images/user-center1.png",
+      "selectedIconPath":"pages/resources/images/user-center2.png"
+    }]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
 }
