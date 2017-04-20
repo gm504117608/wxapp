@@ -1,31 +1,10 @@
-
-<!--index.wxml-->
+<import src="../views/templates/shop-card.wxml" />
 <view class="container">
-  <view bindtap="bindViewTap">
-    <image src="{{userInfo.avatarUrl}}" mode="scaleToFill"></image>
-  </view>
-  <view class="demo">
-    <view class="demo__item">
-      <view class="demo__icon" bindtap="selectPrintPicture1">
-        <text>方形</text>
-      </view>
+  <scroll-view class="shop-scroll-view" scroll-y="true" bindscrolltolower="searchScrollLower">
+    <view wx:key="id" wx:for="{{shops}}" wx:for-item="item">
+      <template is="shop-card" data="{{shop:item}}" />
     </view>
-    <view class="demo__item">
-      <view class="demo__icon" bindtap="selectPrintPicture2">
-        <text>矩形</text>
-      </view>
-    </view>
-  </view>
-  <view class="demo">
-    <view class="demo__item">
-      <view class="demo__icon" bindtap="selectPrintPicture3">
-        <text>5寸</text>
-      </view>
-    </view>
-    <view class="demo__item">
-      <view class="demo__icon" bindtap="selectPrintPicture4">
-        <text>6寸</text>
-      </view>
-    </view>
-  </view>
+    <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
+    <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+  </scroll-view>
 </view>

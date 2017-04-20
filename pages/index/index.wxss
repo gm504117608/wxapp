@@ -1,18 +1,27 @@
-/**index.wxss**/
-
-.demo {
-  padding: 10px 0;
-  display: flex;
+.loading {
+  padding: 10rpx;
+  text-align: center;
+  font-size: 15px;
 }
 
-.demo__item {
-  flex: 1;
+.loading:before {
+  display: inline-block;
+  margin-right: 5rpx;
+  vertical-align: middle;
+  content: '';
+  width: 40rpx;
+  height: 40rpx;
+  background: url(../resources/images/icon_loading.gif) no-repeat;
+  background-size: contain;
+  animation: rotate 1s linear infinite;
+  font-size: 15px;
 }
 
-.demo__icon {
-  margin: 0 auto;
-  width: 108px;
-  height: 108px;
-  background: #ddd;
-  border-radius: 4px;
+.loading.complete:before {
+  display: none;
+  font-size: 15px;
+}
+
+.shop-scroll-view{
+    height: 500px;
 }

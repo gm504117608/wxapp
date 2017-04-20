@@ -4,6 +4,7 @@
   border-bottom: 1rpx solid #e5e5e5;
   margin-top: 10px;
   overflow: hidden;
+  height: 110px;
 }
 
 .zan-panel-title {

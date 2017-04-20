@@ -40,7 +40,7 @@
   overflow: hidden;
   line-height: 20px;
   min-height: 20px;
-  margin-bottom: 3px;
+  margin-bottom: 40px;
 }
 
 .zan-card__right-col {
@@ -48,6 +48,6 @@
 }
 
 .zan-card__left-col {
-  margin-right: 80px;
+  margin-right: 5px;
 }
 
