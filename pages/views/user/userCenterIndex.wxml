@@ -1,38 +1,37 @@
-
-<!--index.wxml-->
+<import src="../../dist/switch/index.wxml" />
+<import src="../templates/user-card.wxml" />
 <view class="container">
-  <view class="demo">
-    <view class="demo__item">
-      <view class="demo__icon" bindtap="selectPrintPicture2">
-        <text class="demo__text">订单管理</text>
-      </view>
-    </view>
-    <view class="demo__item">
-      <view class="demo__icon" bindtap="selectPrintPicture2">
-        <text>优惠券</text>
-      </view>
-    </view>
-    <view class="demo__item">
-      <view class="demo__icon" bindtap="selectPrintPicture2">
-        <text>收货地址</text>
-      </view>
+
+  <!-- 用户信息  -->
+  <template is="user-card" data="{{userInfo:userInfo}}" />
+  <view class="zan-panel">
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">我的订单</view>
+      <view class="zan-cell__ft"></view>
     </view>
   </view>
-  <view class="demo">
-    <view class="demo__item">
-      <view class="demo__icon" bindtap="selectPrintPicture2">
-        <text>系统消息</text>
-      </view>
+  <view class="zan-panel">
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">优惠券</view>
+      <view class="zan-cell__ft"></view>
     </view>
-    <view class="demo__item">
-      <view class="demo__icon" bindtap="selectPrintPicture2">
-        <text>用户反馈</text>
-      </view>
+    <view class="zan-cell zan-cell--access" bindtap="consignmentAddress">
+      <view class="zan-cell__bd">收货地址</view>
+      <view class="zan-cell__ft"></view>
     </view>
-    <view class="demo__item">
-      <view class="demo__icon" bindtap="selectPrintPicture2">
-        <text>关于我们</text>
-      </view>
+  </view>
+  <view class="zan-panel">
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">用户反馈</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">系统消息</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+    <view class="zan-cell zan-cell--access" bindtap="aboutUs">
+      <view class="zan-cell__bd">关于我们</view>
+      <view class="zan-cell__ft"></view>
     </view>
   </view>
 </view>

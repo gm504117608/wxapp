@@ -1,10 +1,8 @@
 <import src="../views/templates/shop-card.wxml" />
 <view class="container">
-  <scroll-view class="shop-scroll-view" scroll-y="true" bindscrolltolower="searchScrollLower">
-    <view wx:key="id" wx:for="{{shops}}" wx:for-item="item">
-      <template is="shop-card" data="{{shop:item}}" />
-    </view>
-    <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
-    <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
-  </scroll-view>
+  <view wx:key="id" wx:for="{{shops}}" wx:for-item="item">
+    <template is="shop-card" data="{{shop:item}}" />
+  </view>
+  <view class="loading" hidden="{{!searchLoading}}">正在载入数据...</view>
+  <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
 </view>

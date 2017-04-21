@@ -1,22 +1,22 @@
 
-<!-- 店铺显示模板 -->
-<template name="shop-card">
-  <view class="zan-panel" bindtap="clickShop" data-shop-id="{{shop.id}}">
+<!-- 用户信息显示模板 -->
+<template name="user-card">
+  <view class="zan-panel">
     <view class="zan-card">
       <view class="zan-card__thumb">
-        <image class="zan-card__img" src="{{shop.iconUrl}}" mode="aspectFit"></image>
+        <image class="zan-card__img" src="{{userInfo.avatarUrl}}" mode="aspectFit"></image>
       </view>
       <view class="zan-card__detail">
         <view class="zan-card__detail-row">
-          <view class="zan-card__right-col">{{shop.mobile}}</view>
+          <view class="zan-card__right-col"></view>
           <view class="zan-card__left-col zan-ellipsis--l2">
-            {{shop.name}}
+            {{userInfo.nickName}}
           </view>
         </view>
         <view class="zan-card__detail-row zan-c-gray-darker">
           <view class="zan-card__right-col"></view>
           <view class="zan-card__left-col">
-            {{shop.district}} {{shop.address}}
+            {{userInfo.province}} - {{userInfo.city}}
           </view>
         </view>
       </view>

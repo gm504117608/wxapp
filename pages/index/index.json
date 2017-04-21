@@ -1,8 +1,4 @@
 {
-    "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "店铺信息",
-    "navigationBarTextStyle":"black"
-  }
+  "navigationBarTitleText": "店铺信息",
+  "enablePullDownRefresh": true
 }

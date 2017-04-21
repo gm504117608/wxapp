@@ -1,13 +1,17 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/views/user/userCenterIndex"
+    "pages/views/user/userCenterIndex",
+    "pages/views/about-us/about",
+    "pages/views/consignee-address/consignment-address"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "郭尼玛",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": false,
+    "backgroundColor": "#C71585"
   },
   "tabBar": {
     "list": [{

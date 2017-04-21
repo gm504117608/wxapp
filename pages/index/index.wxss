@@ -21,7 +21,3 @@
   display: none;
   font-size: 15px;
 }
-
-.shop-scroll-view{
-    height: 500px;
-}
