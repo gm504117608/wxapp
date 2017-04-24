@@ -1,15 +1,36 @@
+var httpClient = require('../../../utils/httpClient.js');
+var util = require('../../../utils/util.js');
+
 var app = getApp();
 
 Page({
   data: {
-    id: ''
+    consignmentAddress: []
   },
 
   onLoad: function (options) {
-    // 前一界面传入的用户id
-    this.setData({id: options.id});
+    var that = this;
+    // 获取收货地址数据
+    var param = {};
+    var url = "consignment/members/" + wx.getStorageSync('memberId');
+    httpClient.request(url, param, "GET",
+      function (response) {
+        that.setData({ consignmentAddress: response.data.data });
+      },
+      function (response) {
+        console.log(response);
+      });
   },
 
-  onShow: function() {
+  onShow: function () {
   },
+
+  /**
+   * 新增收货地址
+   */
+  createConsignmentAddress: function () {
+    wx.redirectTo({
+      url: "../select-address/select-address"
+    });
+  }
 })

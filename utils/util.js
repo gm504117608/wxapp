@@ -31,6 +31,16 @@ function isNull(sInputs) {
   return false;
 }
 
+/**
+ * 判断传入参数是否为空
+ * 为空返回true，否则false
+ * @param sInputs
+ * @returns {boolean}
+ */
+function isNotNull(sInputs) {
+  isNull(sInputs);
+}
+
 /**页面加载提示显示 */
 function showLoading() {
   wx.showToast({
@@ -67,5 +77,6 @@ module.exports = {
   showLoading: showLoading,
   cancelLoading: cancelLoading,
   showModaling: showModaling,
-  isNull: isNull
+  isNull: isNull,
+  isNotNull: isNotNull
 }

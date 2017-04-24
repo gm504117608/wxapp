@@ -5,7 +5,7 @@
   overflow: hidden;
   min-height: 100vh;
   box-sizing: border-box;
-  background-color: #BC8F8F;
+  background-color: #E5E5E5;
 }
 
 .container::before {

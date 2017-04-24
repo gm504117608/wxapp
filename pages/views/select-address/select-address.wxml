@@ -1,0 +1,56 @@
+<import src="../../dist/switch/index.wxml" />
+<view class="container">
+  <view class="zan-form">
+    <view class="zan-cell zan-form__item">
+      <text class="zan-form__title">收货人</text>
+      <input class="zan-form__input zan-cell__bd" maxlength="50" placeholder="姓名" bindblur="blurName" />
+    </view>
+    <view class="zan-cell zan-form__item">
+      <text class="zan-form__title">联系电话</text>
+      <input class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话" bindblur="blurMobile" />
+    </view>
+    <view class="zan-cell zan-form__item zan-cell--last-child">
+      <text class="zan-form__title">选择省份</text>
+      <view class="zan-form__input zan-cell__bd">
+        <picker mode="selector" range="{{ provinceName }}" value="{{ provinceIndex }}" bindchange="onProvinceChange">
+          {{ provinceName[provinceIndex] }}
+        </picker>
+      </view>
+    </view>
+    <view class="zan-cell zan-form__item zan-cell--last-child">
+      <text class="zan-form__title">选择城市</text>
+      <view class="zan-form__input zan-cell__bd">
+        <picker mode="selector" range="{{ cityName }}" value="{{ cityIndex }}" bindchange="onCityChange">
+          {{ cityName[cityIndex] }}
+        </picker>
+      </view>
+    </view>
+    <view class="zan-cell zan-form__item zan-cell--last-child">
+      <text class="zan-form__title">选择行政区</text>
+      <view class="zan-form__input zan-cell__bd">
+        <picker mode="selector" range="{{ areaName }}" value="{{ areaIndex }}" bindchange="onAreaChange">
+          {{ areaName[areaIndex] }}
+        </picker>
+      </view>
+    </view>
+    <view class="zan-cell zan-form__item">
+      <text class="zan-form__title">详细地址</text>
+      <input class="zan-form__input zan-cell__bd" maxlength="100" placeholder="详细地址" bindblur="blurAddress" />
+    </view>
+    <view class="zan-cell zan-form__item">
+      <text class="zan-form__title">邮编</text>
+      <input class="zan-form__input zan-cell__bd" type="number" maxlength="6" placeholder="邮编" bindblur="blurPostcode" />
+    </view>
+    <view class="zan-cell zan-cell--switch">
+      <view class="zan-cell__bd">是否默认地址</view>
+      <view class="zan-cell__ft">
+        <template is="zan-switch" data="{{ checked }}" />
+      </view>
+    </view>
+  </view>
+  <view class="zan-panel">
+    <view class="zan-btns">
+      <button class="zan-btn zan-btn--primary" bindtap="saveConsignmentAddress">保存</button>
+    </view>
+  </view>
+</view>

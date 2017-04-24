@@ -10,9 +10,13 @@ function request(url, param, method, success, fail) {
     },
     method: method,
     dataType: "json",
-    success: success,
-    fail: fail,
-    complete: function () {
+    success: function (res) {
+      success(res);
+    },
+    fail: function (res) {
+      fail(res);
+    },
+    complete: function (res) {
       // complete
       console.log("...complete...");
     }

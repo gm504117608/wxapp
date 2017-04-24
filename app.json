@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/views/user/userCenterIndex",
     "pages/views/about-us/about",
-    "pages/views/consignee-address/consignment-address"
+    "pages/views/consignee-address/consignment-address",
+    "pages/views/select-address/select-address"    
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -11,7 +12,7 @@
     "navigationBarTitleText": "郭尼玛",
     "navigationBarTextStyle":"black",
     "enablePullDownRefresh": false,
-    "backgroundColor": "#C71585"
+    "backgroundColor": "#E8E8E8"
   },
   "tabBar": {
     "list": [{

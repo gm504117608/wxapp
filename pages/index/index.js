@@ -16,7 +16,7 @@ Page({
   // 监听页面加载
   onLoad: function () {
     var that = this;
-    that.setData({pageSize: app.globalParam.pageSize});
+    that.setData({ pageSize: app.globalParam.pageSize });
     /**
      * 调用自己的应用处理用户信息
      */
@@ -29,7 +29,8 @@ Page({
             key: "token",
             data: response.data.data.token
           });
-          that.globalParam.userInfo["id"] = response.data.data.id;
+          // 将用户id存入缓存
+          wx.setStorageSync("memberId", response.data.data.id);
         },
         function (response) {
           console.log(response);
@@ -113,6 +114,6 @@ Page({
    */
   clickShop: function (event) {
     var shopId = event.target.dataset.shopid;
-    
+
   }
 })
