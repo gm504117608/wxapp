@@ -32,5 +32,17 @@ Page({
     wx.redirectTo({
       url: "../select-address/select-address"
     });
+  },
+
+  /**
+   * 修改收货地址
+   */
+  updateConsignmentAddress: function (event) {
+    console.log(event);
+    var id = event.currentTarget.dataset.consignmentAddressId;
+    wx.redirectTo({
+      url: '../select-address/select-address?id=' + id,
+    });
   }
+
 })

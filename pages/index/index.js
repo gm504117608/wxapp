@@ -113,7 +113,7 @@ Page({
    * 点击店铺进去店铺界面
    */
   clickShop: function (event) {
-    var shopId = event.target.dataset.shopid;
+    var shopId = event.target.dataset.shopId;
 
   }
 })

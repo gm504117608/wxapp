@@ -182,7 +182,7 @@ Page(Object.assign({}, Zan.Switch, {
     },
 
     /**
-     * 开个按钮控制
+     * 是否默认地址
      */
     handleZanSwitchChange(e) {
         this.setData({

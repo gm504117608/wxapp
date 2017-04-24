@@ -38,7 +38,7 @@ function isNull(sInputs) {
  * @returns {boolean}
  */
 function isNotNull(sInputs) {
-  isNull(sInputs);
+  return !(isNull(sInputs));
 }
 
 /**页面加载提示显示 */

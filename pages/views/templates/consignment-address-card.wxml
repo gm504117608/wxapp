@@ -2,7 +2,7 @@
 <!-- 收件地址信息显示模板 -->
 <template name="consignment-address-card">
   <view class="zan-panel">
-    <view class="zan-card">
+    <view class="zan-card" data-consignment-address-id="{{address.id}}" bindtap="updateConsignmentAddress">
       <view class="zan-card__detail-row">
         <view class="zan-card__right-col">{{address.mobile}}</view>
         <view class="zan-card__left-col zan-ellipsis--l2">{{address.name}}</view>
