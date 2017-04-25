@@ -42,10 +42,10 @@ function isNotNull(sInputs) {
 }
 
 /**页面加载提示显示 */
-function showLoading() {
+function showLoading(title) {
   wx.showToast({
-    title: '加载中...',
-    icon: 'loading',
+    title: title,
+    icon: 'success',
     duration: 3000
   });
 }
@@ -72,11 +72,30 @@ function showModaling(msg) {
 
 }
 
+/**
+ * 通过元素值获取元素在数组的下标
+ * @param array 数组
+ * @param value 元素值
+ * 
+ */
+function getArrayIndexByValue(array, value) {
+  if(null == array || !(array instanceof Array)){
+    return -1;
+  }
+  var len = array.length;
+  for (var i = 0; i < len; i++) {
+    if (array[i] === value) {
+      return i;
+    }
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
   showLoading: showLoading,
   cancelLoading: cancelLoading,
   showModaling: showModaling,
   isNull: isNull,
-  isNotNull: isNotNull
+  isNotNull: isNotNull,
+  getArrayIndexByValue: getArrayIndexByValue
 }

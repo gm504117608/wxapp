@@ -7,7 +7,6 @@ var app = getApp();
 Page(Object.assign({}, Zan.Switch, {
     data: {
         id: '', // 收货地址唯一标识
-        consignmentAddress: {}, // 收货地址信息
         provinceName: [],
         provinceCode: [],
         cityName: [],
@@ -20,7 +19,7 @@ Page(Object.assign({}, Zan.Switch, {
         provinceIndex: 0,
         cityIndex: 0,
         areaIndex: 0,
-        checked: true, // 是否默认收货地址
+        checked: false, // 是否默认收货地址
         name: '',
         mobile: '',
         postcode: '',
@@ -29,30 +28,48 @@ Page(Object.assign({}, Zan.Switch, {
 
     onLoad: function (options) {
         var that = this;
+        // 获取省份数据
+        that.getProvinceDatas();
         // 前一界面传入的收货地址唯一标识
-        that.setData({ id: options.id });
+        var id = options.id;
         // 获取收货地址数据
-        var id = that.data.id;
-        if (util.isNotNull(id)) {
+        if (util.isNotNull(id)) { // 修改功能
             var url = "consignment/" + id;
             httpClient.request(url, {}, "GET",
                 function (response) {
-                    that.setData({ consignmentAddress: response.data.data });
+                    var result = response;
+                    var isUsing = (result.isUsing === 1) ? true : false;
+                    var provinceIndex = util.getArrayIndexByValue(that.data.provinceCode, result.province);
+                    that.getCityDatas(result.province);
+                    var cityIndex = util.getArrayIndexByValue(that.data.cityCode, result.city);
+                    that.getAreaDatas(result.city);
+                    var areaIndex = util.getArrayIndexByValue(that.data.areaCode, result.area);
+                    that.setData({
+                        id: id,
+                        name: result.name,
+                        mobile: result.mobile,
+                        postcode: result.postcode,
+                        address: result.address,
+                        selectProvinceCode: result.province,
+                        selectCityCode: result.city,
+                        selectAreaCode: result.area,
+                        provinceIndex: provinceIndex,
+                        cityIndex: cityIndex,
+                        areaIndex: areaIndex,
+                        checked: isUsing
+                    });
                 },
                 function (response) {
                     console.log(response);
                 });
         }
-        // 获取省份数据
-        that.getProvinceDatas();
+
     },
 
     /**
      * 获取省份数据
      */
     onProvinceChange: function (e) {
-        console.log(e);
-
         var that = this;
         var index = e.detail.value;
         var code = that.data.provinceCode[index];
@@ -66,15 +83,13 @@ Page(Object.assign({}, Zan.Switch, {
             cityIndex: 0,
             areaIndex: 0
         });
-        that.getCityDatas();
+        that.getCityDatas(code);
     },
 
     /**
      * 获取城市数据
      */
     onCityChange: function (e) {
-        console.log(e);
-
         var that = this;
         var index = e.detail.value;
         var code = that.data.cityCode[index];
@@ -84,15 +99,13 @@ Page(Object.assign({}, Zan.Switch, {
             selectAreaCode: '',
             areaIndex: 0
         });
-        that.getAreaDatas();
+        that.getAreaDatas(code);
     },
 
     /**
      * 获取行政区数据
      */
     onAreaChange: function (e) {
-        console.log(e);
-
         var that = this;
         var index = e.detail.value;
         var code = that.data.areaCode[index];
@@ -111,7 +124,7 @@ Page(Object.assign({}, Zan.Switch, {
         var url = "consignment/province";
         httpClient.request(url, {}, "GET",
             function (response) {
-                var province = response.data.data;
+                var province = response;
                 var len = province.length;
                 var provinceName = [];
                 var provinceCode = [];
@@ -132,12 +145,12 @@ Page(Object.assign({}, Zan.Switch, {
     /**
      * 获取城市数据
      */
-    getCityDatas: function () {
+    getCityDatas: function (selectProvinceCode) {
         var that = this;
-        var url = "consignment/city/" + that.data.selectProvinceCode;
+        var url = "consignment/city/" + selectProvinceCode;
         httpClient.request(url, {}, "GET",
             function (response) {
-                var city = response.data.data;
+                var city = response;
                 var len = city.length;
                 var cityName = [];
                 var cityCode = [];
@@ -158,12 +171,12 @@ Page(Object.assign({}, Zan.Switch, {
     /**
      * 获取行政区数据
      */
-    getAreaDatas: function (city) {
+    getAreaDatas: function (selectCityCode) {
         var that = this;
-        var url = "consignment/area/" + that.data.selectCityCode;
+        var url = "consignment/area/" + selectCityCode;
         httpClient.request(url, {}, "GET",
             function (response) {
-                var area = response.data.data;
+                var area = response;
                 var len = area.length;
                 var areaName = [];
                 var areaCode = [];
@@ -229,21 +242,22 @@ Page(Object.assign({}, Zan.Switch, {
         var that = this;
         var isUsing = (that.data.checked) ? 1 : 0;
         var param = {
-            "memberId": + wx.getStorageSync('memberId'),//会员唯一标识id
-            "name": that.data.name,//收件人
-            "mobile": that.data.mobile, //手机号码
-            "province": that.data.selectProvinceCode, //省份
-            "city": that.data.selectCityCode, //城市
-            "area": that.data.selectAreaCode,//区域
-            "address": that.data.address,//详细地址
-            "postcode": that.data.postcode,//邮编
-            "isUsing": isUsing //是否默认地址【1：是；0：否】
+            "id": that.data.id, // 收货地址唯一标识
+            "memberId": wx.getStorageSync('memberId'),// 会员唯一标识id
+            "name": that.data.name,// 收件人
+            "mobile": that.data.mobile, // 手机号码
+            "province": that.data.selectProvinceCode, // 省份
+            "city": that.data.selectCityCode, // 城市
+            "area": that.data.selectAreaCode,// 区域
+            "address": that.data.address,// 详细地址
+            "postcode": that.data.postcode,// 邮编
+            "isUsing": isUsing // 是否默认地址【1：是；0：否】
         };
-        httpClient.request("consignment/insert/", param, "POST",
+        httpClient.request("consignment/save/", param, "POST",
             function (response) {
                 // 返回上一界面
-                wx.navigateBack({
-                    delta: 1
+                wx.redirectTo({
+                    url: "../consignee-address/consignment-address"
                 });
             },
             function (response) {

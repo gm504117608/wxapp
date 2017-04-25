@@ -21,11 +21,11 @@
     </view>
   </view>
   <view class="zan-panel">
-    <view class="zan-cell zan-cell--access">
+    <view class="zan-cell zan-cell--access" bindtap="userFeedback">
       <view class="zan-cell__bd">用户反馈</view>
       <view class="zan-cell__ft"></view>
     </view>
-    <view class="zan-cell zan-cell--access">
+    <view class="zan-cell zan-cell--access" bindtap="systemInfo">
       <view class="zan-cell__bd">系统消息</view>
       <view class="zan-cell__ft"></view>
     </view>

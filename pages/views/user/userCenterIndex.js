@@ -39,5 +39,33 @@ Page(Object.assign({}, Zan.Switch, {
     wx.redirectTo({
       url: "../consignee-address/consignment-address"
     });
-  }
+  },
+
+  /**
+   * 会员信息
+   */
+  memberInfo: function () {
+    wx.redirectTo({
+      url: "../user-info/user-info"
+    });
+  },
+
+  /**
+   * 系统消息
+   */
+  systemInfo: function () {
+    wx.redirectTo({
+      url: "../system/system-info"
+    });
+  },
+
+  /**
+   * 用户反馈
+   */
+  userFeedback: function () {
+    wx.redirectTo({
+      url: "../feedback/feedback-info"
+    });
+  },
+
 }));

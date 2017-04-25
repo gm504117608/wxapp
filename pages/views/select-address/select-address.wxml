@@ -3,11 +3,12 @@
   <view class="zan-form">
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">收货人</text>
-      <input class="zan-form__input zan-cell__bd" maxlength="50" placeholder="姓名" bindblur="blurName" />
+      <input class="zan-form__input zan-cell__bd" maxlength="50" placeholder="姓名" bindblur="blurName"
+       value="{{name}}"/>
     </view>
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">联系电话</text>
-      <input class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话" bindblur="blurMobile" />
+      <input class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话" bindblur="blurMobile" value="{{mobile}}"/>
     </view>
     <view class="zan-cell zan-form__item zan-cell--last-child">
       <text class="zan-form__title">选择省份</text>
@@ -35,11 +36,12 @@
     </view>
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">详细地址</text>
-      <input class="zan-form__input zan-cell__bd" maxlength="100" placeholder="详细地址" bindblur="blurAddress" />
+      <input class="zan-form__input zan-cell__bd" maxlength="100" placeholder="详细地址" bindblur="blurAddress" 
+       value="{{address}}"/>
     </view>
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">邮编</text>
-      <input class="zan-form__input zan-cell__bd" type="number" maxlength="6" placeholder="邮编" bindblur="blurPostcode" />
+      <input class="zan-form__input zan-cell__bd" type="number" maxlength="6" placeholder="邮编" bindblur="blurPostcode"  value="{{postcode}}"/>
     </view>
     <view class="zan-cell zan-cell--switch">
       <view class="zan-cell__bd">是否默认地址</view>

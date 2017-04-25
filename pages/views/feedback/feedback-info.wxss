@@ -1,0 +1,6 @@
+.zan-panel-feedback {
+  background: #fff;
+  border: 1rpx solid #e5e5e5;
+  margin: 10px;
+  overflow: hidden;
+}

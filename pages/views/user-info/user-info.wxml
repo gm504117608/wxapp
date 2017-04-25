@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="zan-panel">
+    <view class="zan-card">
+      <view class="wx-avatar">
+        <image class="zan-card__img" src="{{avatarUrl}}" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+  <view class="zan-form">
+    <view class="zan-cell zan-form__item">
+      <text class="zan-form__title">账户名</text>
+      <input class="zan-form__input zan-cell__bd" maxlength="50" placeholder="账户名" disabled="true" value="{{nickName}}" />
+    </view>
+    <view class="zan-cell zan-form__item">
+      <text class="zan-form__title">联系电话</text>
+      <input class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话" bindblur="blurMobile" value="{{mobile}}" />
+    </view>
+    <view class="zan-cell zan-form__item">
+      <text class="zan-form__title">邮箱</text>
+      <input class="zan-form__input zan-cell__bd" maxlength="20" placeholder="邮箱" bindblur="blurEmail" value="{{email}}" />
+    </view>
+    <view class="zan-cell zan-form__item">
+      <text class="zan-form__title">个性签名</text>
+      <textarea class="zan-form__input zan-cell__bd" maxlength="200" auto-height placeholder="个性签名描述" bindblur="blurSignature" value="{{signature}}" />
+    </view>
+  </view>
+  <view class="zan-panel">
+    <view class="zan-btns">
+      <button class="zan-btn zan-btn--primary" bindtap="saveUserInfo">保存</button>
+    </view>
+  </view>
+</view>

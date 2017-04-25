@@ -4,7 +4,10 @@
     "pages/views/user/userCenterIndex",
     "pages/views/about-us/about",
     "pages/views/consignee-address/consignment-address",
-    "pages/views/select-address/select-address"    
+    "pages/views/select-address/select-address",
+    "pages/views/user-info/user-info",
+    "pages/views/system/system-info",
+    "pages/views/feedback/feedback-info"                    
   ],
   "window":{
     "backgroundTextStyle":"light",

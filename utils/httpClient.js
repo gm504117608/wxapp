@@ -1,3 +1,4 @@
+var util = require('util.js');
 var app = getApp();
 
 function request(url, param, method, success, fail) {
@@ -11,14 +12,19 @@ function request(url, param, method, success, fail) {
     method: method,
     dataType: "json",
     success: function (res) {
-      success(res);
+      var data = res.data;
+      var code = data.code;
+      var message = data.message;
+      if (code != 0) {
+        util.showLoading(message);
+      }
+      success(res.data.data);
     },
     fail: function (res) {
       fail(res);
     },
     complete: function (res) {
       // complete
-      console.log("...complete...");
     }
   })
 };

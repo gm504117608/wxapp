@@ -27,10 +27,10 @@ Page({
           // 缓存token
           wx.setStorage({
             key: "token",
-            data: response.data.data.token
+            data: response.token
           });
           // 将用户id存入缓存
-          wx.setStorageSync("memberId", response.data.data.id);
+          wx.setStorageSync("memberId", response.id);
         },
         function (response) {
           console.log(response);
@@ -53,10 +53,10 @@ Page({
     var url = "shops?pageNum=" + that.data.pageNum + "&pageSize=" + that.data.pageSize;
     httpClient.request(url, {}, "GET",
       function (response) {
-        // that.data['shops'] = response.data.data; // 这样修改不能使数据生效，只能通过setData方法修改数据
-        var result = response.data.data.result;
-        var pageSize = response.data.data.pageSize;
-        var pageNum = response.data.data.pageNum;
+        // that.data['shops'] = response; // 这样修改不能使数据生效，只能通过setData方法修改数据
+        var result = response.result;
+        var pageSize = response.pageSize;
+        var pageNum = response.pageNum;
         if (null == result || result.length == 0) {
           that.setData({
             searchLoading: false,  //把"上拉加载"的变量设为false，隐藏 

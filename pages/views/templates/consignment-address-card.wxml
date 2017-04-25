@@ -9,7 +9,7 @@
       </view>
       <view class="zan-card__detail-row zan-c-gray-darker">
         <view class="zan-card__left-col">
-          {{address.province}}{{address.city}}{{address.area}}{{address.address}}
+          {{address.provinceName}}{{address.cityName}}{{address.areaName}}{{address.address}}
         </view>
       </view>
     </view>
