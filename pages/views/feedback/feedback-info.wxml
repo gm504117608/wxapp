@@ -1,27 +1,24 @@
 <view class="container">
-
   <view class="zan-panel-title">反馈类型</view>
   <view class="zan-panel-feedback">
-    <view wx:for="{{ configuration }}" wx:for-item="item" class="icon-wrap">
-      <view class="icon-classname" data-configuration-code="{{item.code}}" bindtap="selectFeedbackType">
-      {{item.description}}</view>
+    <view wx:for="{{ configuration }}" wx:for-item="item" wx:key="code">
+      <view class="icon-wrap {{select}}" data-configuration-code="{{item.code}}" bindtap="selectFeedbackType">
+        <view class="zan-icon">
+          {{item.description}}</view>
+      </view>
     </view>
   </view>
-
   <view class="zan-panel-feedback">
     <view class="zan-cell">
       <text class="zan-form__title">联系电话</text>
-      <input class="zan-form__input zan-cell__bd" type="number" maxlength="20" 
-      placeholder="手机或固定电话" bindblur="blurMobile" value="{{mobile}}" />
+      <input class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话" bindblur="blurMobile" value="{{mobile}}" />
     </view>
   </view>
-
   <view class="zan-panel-title">反馈内容</view>
   <view class="zan-panel-feedback">
-    <textarea class="zan-form__input zan-cell__bd" maxlength="400" style="height: 160px;" 
-    placeholder="描述需要反馈的详细信息" bindblur="blurContent" value="{{content}}" />
+    <textarea class="zan-form__input zan-cell__bd" maxlength="400" style="height: 180px; width: auto" placeholder="描述需要反馈的详细信息" bindblur="blurContent" value="{{content}}" />
   </view>
-  <view class="zan-panel">
+  <view class="zan-panel-feedback">
     <view class="zan-btns">
       <button class="zan-btn zan-btn--primary" bindtap="saveFeedbackInfo">提交</button>
     </view>
