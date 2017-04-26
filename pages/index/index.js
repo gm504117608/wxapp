@@ -114,6 +114,6 @@ Page({
    */
   clickShop: function (event) {
     var shopId = event.target.dataset.shopId;
-
+    
   }
 })

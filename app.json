@@ -7,7 +7,8 @@
     "pages/views/select-address/select-address",
     "pages/views/user-info/user-info",
     "pages/views/system/system-info",
-    "pages/views/feedback/feedback-info"                    
+    "pages/views/feedback/feedback-info",
+    "pages/views/upload-photo/upload-photo"                    
   ],
   "window":{
     "backgroundTextStyle":"light",

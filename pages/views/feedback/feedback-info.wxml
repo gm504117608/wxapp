@@ -2,7 +2,7 @@
   <view class="zan-panel-title">反馈类型</view>
   <view class="zan-panel-feedback">
     <view wx:for="{{ configuration }}" wx:for-item="item" wx:key="code">
-      <view class="icon-wrap {{select}}" data-configuration-code="{{item.code}}" bindtap="selectFeedbackType">
+      <view class="icon-wrap {{item.select}}" data-configuration-code="{{item.code}}" bindtap="selectFeedbackType">
         <view class="zan-icon">
           {{item.description}}</view>
       </view>

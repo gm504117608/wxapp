@@ -8,8 +8,7 @@ Page({
         'configuration': [], //  反馈类型类型
         'content': '',
         'mobile': '',
-        'type': '', // 反馈类型
-        'select': ''
+        'type': '' // 反馈类型
     },
 
     onLoad: function () {
@@ -17,6 +16,10 @@ Page({
         var url = "feedback/type";
         httpClient.request(url, {}, "GET",
             function (response) {
+                var len = response.length;
+                for (var i = 0; i < len; i++){
+                    response[i]['select'] = '';
+                }
                 that.setData({
                     configuration: response
                 });
@@ -46,9 +49,17 @@ Page({
      * 选择反馈类型
      */
     selectFeedbackType: function (event) {
-        console.log(event);
         var code = event.currentTarget.dataset.configurationCode;
-        this.setData({ 'type': code, 'select': 'icon-wrap-select' });
+        var configuration = this.data.configuration;
+        var len = configuration.length;
+        for (var i = 0; i < len; i++) {
+            if(configuration[i].code === code){
+                configuration[i].select = 'icon-wrap-select';
+            } else {
+                configuration[i].select = '';                
+            }
+        }
+        this.setData({ 'type': code, 'configuration': configuration });
 
     },
 
