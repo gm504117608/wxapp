@@ -113,7 +113,7 @@ Page({
    * 点击店铺进去店铺界面
    */
   clickShop: function (event) {
-    var shopId = event.target.dataset.shopId;
+    var shopId = event.currentTarget.dataset.shopId;
     app.globalParam.shopId = shopId;
     wx.redirectTo({
       url: "../views/photo/photo-upload/photo-upload"

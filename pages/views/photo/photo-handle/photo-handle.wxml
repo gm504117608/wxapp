@@ -1,29 +1,29 @@
 <view class="container">
   <view class="zan-panel">
     <view class="zan-card">
-        <image src="http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJKXwah6pJr46KLHQttLQ7Q1lIOWzIma7rOkbYs4JJVbKqnoJltZH3nS0aTuf4FE4gRbMdibtgoWFw/0" mode="aspectFit"></image>
+        <image src="{{photoPath}}" mode="aspectFit"></image>
     </view>
   </view>
   <view class="zan-form">
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">裁剪</text>
-      <input class="zan-form__input zan-cell__bd" maxlength="50" placeholder="账户名" disabled="true" value="{{nickName}}" />
+      <input class="zan-form__input zan-cell__bd" bindblur="blurClipping" value="{{clipping}}" />
     </view>
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">排版</text>
-      <input class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话" bindblur="blurMobile" value="{{mobile}}" />
+      <input class="zan-form__input zan-cell__bd" bindblur="blurTypesetting" value="{{typesetting}}" />
     </view>
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">打印数量</text>
-      <input class="zan-form__input zan-cell__bd" type="number" maxlength="5" placeholder="邮箱" bindblur="blurEmail" value="{{email}}" />
+      <input class="zan-form__input zan-cell__bd" type="number" maxlength="5" bindblur="blurAmount" value="{{amount}}" />
     </view>
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">签名</text>
-      <textarea class="zan-form__input zan-cell__bd" maxlength="200" auto-height placeholder="个性签名描述" bindblur="blurSignature" value="{{signature}}" />
+      <textarea class="zan-form__input zan-cell__bd" maxlength="200" auto-height placeholder="个性签名描述" bindblur="blurDescription" value="{{description}}" />
     </view>
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">备注</text>
-      <textarea class="zan-form__input zan-cell__bd" maxlength="200" auto-height placeholder="个性签名描述" bindblur="blurSignature" value="{{signature}}" />
+      <textarea class="zan-form__input zan-cell__bd" maxlength="200" auto-height placeholder="个性签名描述" bindblur="blurRemark" value="{{remark}}" />
     </view>
   </view>
   <view class="zan-panel">

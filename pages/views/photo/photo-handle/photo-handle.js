@@ -5,6 +5,7 @@ var app = getApp();
 
 Page({
     data: {
+        'id': '',// 唯一标示ID
         'type': '', //  照片类型
         'photoPath': '', // 图片path地址
         'description': '', // 照片描述
@@ -41,17 +42,55 @@ Page({
         });
     },
 
+    blurClipping: function (e) {
+        var value = e.detail.value;
+        this.setData({ 'clipping': value });
+    },
+
+    blurTypesetting: function (e) {
+        var value = e.detail.value;
+        this.setData({ 'typesetting': value });
+    },
+
+    blurAmount: function (e) {
+        var value = e.detail.value;
+        this.setData({ 'amount': value });
+    },
+
+
+    blurDescription: function (e) {
+        var value = e.detail.value;
+        this.setData({ 'description': value });
+    },
+
+    blurRemark: function (e) {
+        var value = e.detail.value;
+        this.setData({ 'remark': value });
+    },
+
     /**
      * 上传选中的图片信息到服务器
      */
     savePrintPhotoInfo: function () {
+console.log(app.globalParam);
+
         var that = this;
         var url = '/shops/photo/upload';
-        var param = [];
-        var filePath = that.photoPath;
+        var param = {
+            'id': that.data.id,
+            'memberId': wx.getStorageSync('memberId'),
+            'shopId': app.globalParam.shopId,
+            'description': that.data.description,
+            'type': that.data.type,
+            'clipping': that.data.clipping,
+            'typesetting': that.data.typesetting,
+            'amount': that.data.amount,
+            'remark': that.data.remark
+        };
+        var filePath = that.data.photoPath;
         httpClient.uploadFile(url, param, filePath,
             function (response) {
-
+                console.log(response);
             },
             function (response) {
                 console.log(response);
