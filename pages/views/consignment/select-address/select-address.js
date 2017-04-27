@@ -1,6 +1,6 @@
-var httpClient = require('../../../utils/httpClient.js');
-var util = require('../../../utils/util.js');
-var Zan = require('../../dist/index');
+var httpClient = require('../../../../utils/httpClient.js');
+var util = require('../../../../utils/util.js');
+var Zan = require('../../../dist/index');
 
 var app = getApp();
 

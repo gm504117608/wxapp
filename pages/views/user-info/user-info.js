@@ -69,7 +69,7 @@ Page({
             function (response) {
                 // 返回上一界面
                 wx.redirectTo({
-                    url: "../user/userCenterIndex"
+                    url: "../myself/myself-index"
                 });
             },
             function (response) {

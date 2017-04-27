@@ -44,7 +44,8 @@ App({
   globalParam: {
     userInfo: null,
     serverUrl: "http://localhost:8080/api/",
-    pageSize: 10
+    pageSize: 10,
+    shopId: ''
   }
 
 })

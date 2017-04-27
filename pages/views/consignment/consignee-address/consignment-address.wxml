@@ -1,4 +1,4 @@
-<import src="../templates/consignment-address-card.wxml" />
+<import src="../../templates/consignment-address-card.wxml" />
 <view class="container">
 
   <!-- 用户收货地址信息  -->

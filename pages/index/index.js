@@ -114,6 +114,9 @@ Page({
    */
   clickShop: function (event) {
     var shopId = event.target.dataset.shopId;
-    
+    app.globalParam.shopId = shopId;
+    wx.redirectTo({
+      url: "../views/photo/photo-upload/photo-upload"
+    });
   }
 })

@@ -1,4 +1,4 @@
-<import src="../../dist/switch/index.wxml" />
+<import src="../../../dist/switch/index.wxml" />
 <view class="container">
   <view class="zan-form">
     <view class="zan-cell zan-form__item">

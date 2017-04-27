@@ -1,5 +1,5 @@
-var httpClient = require('../../../utils/httpClient.js');
-var util = require('../../../utils/util.js');
+var httpClient = require('../../../../utils/httpClient.js');
+var util = require('../../../../utils/util.js');
 
 var app = getApp();
 
