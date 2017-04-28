@@ -1,0 +1,9 @@
+<import src="../../templates/photo-order-card.wxml" />
+<view class="container">
+  <view class="zan-panel" style="padding: 15px;">
+    <button class="zan-btn zan-btn--small zan-btn--primary" bindtap="selectOrderRecords">下单</button>
+  </view>
+  <view wx:key="id" wx:for="{{printPhoto}}" wx:for-item="item">
+    <template is="photo-order-card" data="{{photo:item}}" />
+  </view>
+</view>

@@ -1,0 +1,8 @@
+.zan-card__left-font {
+  font-size: 10px;
+}
+
+.zan-card-select {
+  border: 1rpx solid #66CD00;
+  background-color: #EAEAEA;
+}

@@ -57,6 +57,7 @@ Page({
      * 选择以前在选定店铺下面的上传过的照片进行下单打印
      */
     selectHistoryPhoto: function () {
-
+        var path = "../photo-order/photo-order";
+        wx.redirectTo({ url: path });
     }
 })

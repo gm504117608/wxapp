@@ -9,7 +9,8 @@
     "pages/views/system/system-info",
     "pages/views/feedback/feedback-info",
     "pages/views/photo/photo-upload/photo-upload",
-    "pages/views/photo/photo-handle/photo-handle"                           
+    "pages/views/photo/photo-handle/photo-handle",
+    "pages/views/photo/photo-order/photo-order"                           
   ],
   "window":{
     "backgroundTextStyle":"light",

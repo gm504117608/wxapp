@@ -15,6 +15,7 @@ function request(url, param, method, success, fail) {
     method: method,
     dataType: "json",
     success: function (res) {
+      console.log(res);
       var data = res.data;
       var code = data.code;
       var message = data.message;

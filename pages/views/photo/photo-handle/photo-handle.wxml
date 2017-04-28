@@ -1,7 +1,7 @@
 <view class="container">
   <view class="zan-panel">
     <view class="zan-card">
-        <image src="{{photoPath}}" mode="aspectFit"></image>
+      <image src="{{photoPath}}" mode="aspectFit"></image>
     </view>
   </view>
   <view class="zan-form">
@@ -14,21 +14,16 @@
       <input class="zan-form__input zan-cell__bd" bindblur="blurTypesetting" value="{{typesetting}}" />
     </view>
     <view class="zan-cell zan-form__item">
-      <text class="zan-form__title">打印数量</text>
-      <input class="zan-form__input zan-cell__bd" type="number" maxlength="5" bindblur="blurAmount" value="{{amount}}" />
-    </view>
-    <view class="zan-cell zan-form__item">
       <text class="zan-form__title">签名</text>
-      <textarea class="zan-form__input zan-cell__bd" maxlength="200" auto-height placeholder="个性签名描述" bindblur="blurDescription" value="{{description}}" />
+      <textarea class="zan-form__input zan-cell__bd" maxlength="40" style="height: 60px; width: auto" placeholder="照片签名描述" bindblur="blurDescription" value="{{description}}" />
     </view>
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">备注</text>
-      <textarea class="zan-form__input zan-cell__bd" maxlength="200" auto-height placeholder="个性签名描述" bindblur="blurRemark" value="{{remark}}" />
+      <textarea class="zan-form__input zan-cell__bd" maxlength="100" style="height: 100px; width: auto" placeholder="一些特殊的要求可以在这里描述" bindblur="blurRemark" value="{{remark}}" />
     </view>
   </view>
-  <view class="zan-panel">
-    <view class="zan-btns">
-      <button class="zan-btn zan-btn--primary" bindtap="savePrintPhotoInfo">上传</button>
-    </view>
+  <view class="zan-panel" style="padding: 15px;">
+    <button class="zan-btn zan-btn--small" bindtap="selectPhoto">重选照片</button>
+    <button class="zan-btn zan-btn--small zan-btn--primary" bindtap="savePrintPhotoInfo">上传</button>
   </view>
 </view>

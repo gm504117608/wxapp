@@ -1,0 +1,25 @@
+
+<!-- 上传照片显示模板 -->
+<template name="photo-order-card">
+  <view class="zan-panel" bindtap="clickPrintPhoto" data-print-photo-id="{{photo.id}}">
+    <view class="zan-card {{photo.select}}">
+      <view class="zan-card__thumb">
+        <image class="zan-card__img" src="{{photo.storeUrl}}" mode="aspectFit"></image>
+      </view>
+      <view class="zan-card__detail">
+        <view class="zan-card__detail-row">
+          <view class="zan-card__right-col">{{photo.clipping}}</view>
+          <view class="zan-card__left-col">
+            {{photo.description}}
+          </view>
+        </view>
+        <view class="zan-card__detail-row zan-c-gray-darker">
+          <view class="zan-card__right-col">{{photo.typesetting}}</view>
+          <view class="zan-card__left-col zan-card__left-font">
+            {{photo.typeName}} - {{photo.typeRemark}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
