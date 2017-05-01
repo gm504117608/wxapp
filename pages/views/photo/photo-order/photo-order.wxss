@@ -3,6 +3,16 @@
 }
 
 .zan-card-select {
-  border: 1rpx solid #66CD00;
-  background-color: #EAEAEA;
+  border: 1rpx solid #66cd00;
+  background-color: #eaeaea;
+}
+
+.zan-panel-btn-none {
+  padding: 15px;
+  display: none;
+}
+
+.zan-panel-btn-block {
+  padding: 15px;
+  display: block;
 }

@@ -10,7 +10,7 @@ Page({
 
     onLoad: function () {
         var that = this;
-        var url = "shops/photo/type";
+        var url = "shops/printCost/" + app.globalParam.shopId;
         httpClient.request(url, {}, "GET",
             function (response) {
                 var len = response.length;

@@ -1,0 +1,7 @@
+.zan-card__left-font {
+  font-size: 12px;
+}
+
+.zan-card__detail-padding {
+  padding-top: 10px;
+}

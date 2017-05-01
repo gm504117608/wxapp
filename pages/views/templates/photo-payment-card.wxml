@@ -1,0 +1,22 @@
+<import src="../../dist/quantity/index.wxml" />
+
+<!-- 下单照片显示模板 -->
+<template name="photo-payment-card">
+  <view class="zan-panel" bindtap="clickPrintPhoto" data-print-photo-id="{{photo.id}}">
+    <view class="zan-card">
+      <view class="zan-card__thumb">
+        <image class="zan-card__img" src="{{photo.storeUrl}}" mode="aspectFit"></image>
+      </view>
+      <view class="zan-card__detail">
+        <view class="zan-card__detail-row">
+          <view class="zan-card__left-font">
+            {{photo.typeName}} - {{photo.typeRemark}}
+          </view>
+        </view>
+        <view class="zan-card__detail-row zan-card__detail-padding">
+          <template is="zan-quantity" data="{{ ...photo['amount' + photo.id], componentId: 'amount' + photo.id }}" />
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
