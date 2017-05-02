@@ -5,7 +5,7 @@
   <!-- 用户信息  -->
   <template is="user-card" data="{{userInfo:userInfo}}" />
   <view class="zan-panel">
-    <view class="zan-cell zan-cell--access">
+    <view class="zan-cell zan-cell--access" bindtap="myOrder">
       <view class="zan-cell__bd">我的订单</view>
       <view class="zan-cell__ft"></view>
     </view>

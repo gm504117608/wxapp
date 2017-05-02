@@ -11,7 +11,9 @@
     "pages/views/photo/photo-upload/photo-upload",
     "pages/views/photo/photo-handle/photo-handle",
     "pages/views/photo/photo-order/photo-order",
-    "pages/views/photo/photo-payment/photo-payment"                               
+    "pages/views/photo/photo-payment/photo-payment", 
+    "pages/views/order/payment/payment", 
+    "pages/views/order/show/show"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -24,8 +24,10 @@ Page(Object.assign({}, Zan.Quantity, {
                     for (var i = 0; i < len; i++) {
                         response[i]['amount' + response[i].id] = { quantity: 1, min: 1, max: 50 };
                         cost = cost + response[i]['price'];
+                        response[i]['storeUrl'] = app.globalParam.serverUrl + response[i].storeUrl;
                     }
                 }
+                cost = util.fillUpMoneyTwoDecimals(cost);
                 that.setData({
                     'printPhoto': response,
                     'cost': cost
@@ -52,6 +54,7 @@ Page(Object.assign({}, Zan.Quantity, {
             }
             cost = cost + (printPhoto[i]['amount' + printPhoto[i].id].quantity * printPhoto[i]['price']);
         }
+        cost = util.fillUpMoneyTwoDecimals(cost);
         this.setData({
             'printPhoto': printPhoto,
             'cost': cost

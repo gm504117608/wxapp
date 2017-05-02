@@ -100,13 +100,13 @@ Page({
             'memberId': wx.getStorageSync('memberId'),
             'printPhotographIds': id.substring(1)
         };
-        // httpClient.request(url, param, "POST",
-            // function (response) {
-                var path = "../photo-payment/photo-payment?id=" + id.substring(1) + "&orderNo=R000201704302057245755704469280";// + response;
+        httpClient.request(url, param, "POST",
+            function (response) {
+                var path = "../photo-payment/photo-payment?id=" + id.substring(1) + "&orderNo=" + response;
                 wx.redirectTo({ url: path });
-            // },
-            // function (response) {
-                // console.log(response);
-            // });
+            },
+            function (response) {
+                console.log(response);
+            });
     },
 })

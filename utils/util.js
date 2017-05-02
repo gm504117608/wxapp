@@ -1,20 +1,3 @@
-function formatTime(date) {
-  var year = date.getFullYear()
-  var month = date.getMonth() + 1
-  var day = date.getDate()
-
-  var hour = date.getHours()
-  var minute = date.getMinutes()
-  var second = date.getSeconds()
-
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-}
-
-function formatNumber(n) {
-  n = n.toString()
-  return n[1] ? n : '0' + n
-}
-
 /**
  * 判断传入参数是否为空
  * 为空返回true，否则false
@@ -75,11 +58,10 @@ function showModaling(msg) {
 /**
  * 通过元素值获取元素在数组的下标
  * @param array 数组
- * @param value 元素值
- * 
+ * @param value 元素值 
  */
 function getArrayIndexByValue(array, value) {
-  if(null == array || !(array instanceof Array)){
+  if (null == array || !(array instanceof Array)) {
     return -1;
   }
   var len = array.length;
@@ -90,12 +72,19 @@ function getArrayIndexByValue(array, value) {
   }
 }
 
+/**
+ * 如果给定的金额不够两位小数，用0补齐
+ */
+function fillUpMoneyTwoDecimals(money) {
+  return money.toFixed(2);
+}
+
 module.exports = {
-  formatTime: formatTime,
   showLoading: showLoading,
   cancelLoading: cancelLoading,
   showModaling: showModaling,
   isNull: isNull,
   isNotNull: isNotNull,
-  getArrayIndexByValue: getArrayIndexByValue
+  getArrayIndexByValue: getArrayIndexByValue,
+  fillUpMoneyTwoDecimals: fillUpMoneyTwoDecimals
 }

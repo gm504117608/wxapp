@@ -1,0 +1,11 @@
+.zan-card__detail-margin {
+  margin-left: 50px;
+}
+
+.zan-card__thumb {
+  width: 60px;
+  height: 70px;
+  padding-top: 30px;
+  color: #ff0000;
+  font-weight: bold;
+}

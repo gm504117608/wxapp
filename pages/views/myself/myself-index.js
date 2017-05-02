@@ -68,4 +68,13 @@ Page(Object.assign({}, Zan.Switch, {
     });
   },
 
+  /**
+   * 我的订单
+   */
+  myOrder: function () {
+    wx.redirectTo({
+      url: "../order/show/show"
+    });
+  },
+
 }));

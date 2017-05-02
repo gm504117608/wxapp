@@ -47,6 +47,7 @@ function uploadFile(url, param, filePath, success, fail) {
     },
     formData: param,
     success: function (res) {
+      console.log(res);
       var data = res.data;
       var code = data.code;
       var message = data.message;
@@ -64,7 +65,30 @@ function uploadFile(url, param, filePath, success, fail) {
   })
 };
 
+
+/**
+ * 获取指定配置类型的基础配置信息
+ * @param type 配置类型 
+ */
+function getConfigInfoByType(types) {
+  var result = wx.getStorageSync(types);
+  if (isNull(result)) {
+    var url = "/orders/config/" + types;
+    httpClient.request(url, {}, "GET",
+      function (response) {
+        // 将配置信息存入缓存
+        result = response;
+        wx.setStorageSync("types", result);
+      },
+      function (response) {
+        console.log(response);
+      });
+  }
+  return result;
+};
+
 module.exports = {
   request: request,
-  uploadFile: uploadFile
+  uploadFile: uploadFile,
+  getConfigInfoByType: getConfigInfoByType
 }
