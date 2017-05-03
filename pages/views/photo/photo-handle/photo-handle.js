@@ -85,9 +85,9 @@ Page({
      */
     savePrintPhotoInfo: function () {
         var that = this;
-        var url = '/shops/photo/upload';
+        var id = that.data.id;
         var param = {
-            'id': that.data.id,
+            'id': id,
             'memberId': wx.getStorageSync('memberId'),
             'shopId': app.globalParam.shopId,
             'description': that.data.description,
@@ -97,14 +97,26 @@ Page({
             'remark': that.data.remark
         };
         var filePath = that.data.photoPath;
-        httpClient.uploadFile(url, param, filePath,
-            function (response) {
-                var path = "../photo-order/photo-order";
-                wx.redirectTo({ url: path });
-            },
-            function (response) {
-                console.log(response);
-            });
+        if (util.isNull(id) || filePath.indexOf("http") < 0) {
+            httpClient.uploadFile("/shops/photo/upload", param, filePath,
+                function (response) {
+                    var path = "../photo-order/photo-order";
+                    wx.redirectTo({ url: path });
+                },
+                function (response) {
+                    console.log(response);
+                });
+        } else {
+            httpClient.request("/shops/photos", param, "POST",
+                function (response) {
+                    var path = "../photo-order/photo-order";
+                    wx.redirectTo({ url: path });
+                },
+                function (response) {
+                    console.log(response);
+                });
+        }
+
     },
 
 })

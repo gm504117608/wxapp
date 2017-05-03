@@ -1,37 +1,39 @@
 <import src="../../../dist/tab/index.wxml" />
 <import src="../../templates/order-show-card.wxml" />
 <view class="container">
-  <view style="margin-bottom: 10px">
+  <view style="margin-bottom: 10px; position: fixed; background-color: red;">
     <template is="zan-tab" data="{{tab: orderTab, componentId: 'orderTab'}}"></template>
   </view>
-  <block wx:if="{{orderTab.selectedId === 'S01'}}">
-    <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
-      <template is="order-show-other-card" data="{{reservation: item}}"></template>
-    </view>
-  </block>
-  <block wx:elif="{{orderTab.selectedId === 'S02'}}">
-    <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
-      <template is="order-show-other-card" data="{{reservation: item}}"></template>
-    </view>
-  </block>
-  <block wx:elif="{{orderTab.selectedId === 'S03'}}">
-    <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
-      <template is="order-show-other-card" data="{{reservation: item}}"></template>
-    </view>
-  </block>
-  <block wx:elif="{{orderTab.selectedId === 'S04'}}">
-    <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
-      <template is="order-show-other-card" data="{{reservation: item}}"></template>
-    </view>
-  </block>
-  <block wx:elif="{{orderTab.selectedId === 'S05'}}">
-    <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
-      <template is="order-show-other-card" data="{{reservation: item}}"></template>
-    </view>
-  </block>
-  <block wx:else>
-    <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
-      <template is="order-show-all-card" data="{{reservation: item}}"></template>
-    </view>
-  </block>
+  <view style="padding-top: 45px;">
+    <block wx:if="{{orderTab.selectedId === 'S01'}}">
+      <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
+        <template is="order-show-other-card" data="{{reservation: item}}"></template>
+      </view>
+    </block>
+    <block wx:elif="{{orderTab.selectedId === 'S02'}}">
+      <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
+        <template is="order-show-other-card" data="{{reservation: item}}"></template>
+      </view>
+    </block>
+    <block wx:elif="{{orderTab.selectedId === 'S03'}}">
+      <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
+        <template is="order-show-other-card" data="{{reservation: item}}"></template>
+      </view>
+    </block>
+    <block wx:elif="{{orderTab.selectedId === 'S04'}}">
+      <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
+        <template is="order-show-other-card" data="{{reservation: item}}"></template>
+      </view>
+    </block>
+    <block wx:elif="{{orderTab.selectedId === 'S05'}}">
+      <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
+        <template is="order-show-other-card" data="{{reservation: item}}"></template>
+      </view>
+    </block>
+    <block wx:else>
+      <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
+        <template is="order-show-all-card" data="{{reservation: item}}"></template>
+      </view>
+    </block>
+  </view>
 </view>

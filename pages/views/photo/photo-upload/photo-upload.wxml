@@ -1,13 +1,18 @@
 <view class="container">
   <view class="zan-panel">
-    <view wx:for="{{ configuration }}" wx:for-item="item" wx:key="code">
-      <view class="icon-wrap {{item.color}}" data-photo-code="{{item.code}}" bindtap="selectPhotoType">
-        <view class="zan-icon" style="font-size: 18px; color: #FFFFFF;">
-          {{item.description}}
+    <block wx:if="{{configuration.length == 0}}">
+      <view class="zan-c-gray-darker zan-c-gray-tip">本店没有设置打印类型配置信息，请联系店家或系统管理人员。</view>
+    </block>
+    <block wx:else>
+      <view wx:for="{{ configuration }}" wx:for-item="item" wx:key="code">
+        <view class="icon-wrap" data-photo-code="{{item.code}}" bindtap="selectPhotoType">
+          <view class="zan-icon" style="font-size: 18px; color: #FFFFFF;">
+            {{item.description}}
+          </view>
+          <view class="icon-classname">{{item.remark}}</view>
         </view>
-        <view class="icon-classname">{{item.remark}}</view>
       </view>
-    </view>
+    </block>
   </view>
   <view class="zan-panel">
     <view class="zan-btns">

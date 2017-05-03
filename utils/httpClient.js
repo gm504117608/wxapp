@@ -21,8 +21,9 @@ function request(url, param, method, success, fail) {
       var message = data.message;
       if (code != 0) {
         util.showLoading(message);
+      } else {
+        success(res.data.data);
       }
-      success(res.data.data);
     },
     fail: function (res) {
       fail(res);
@@ -48,13 +49,14 @@ function uploadFile(url, param, filePath, success, fail) {
     formData: param,
     success: function (res) {
       console.log(res);
-      var data = res.data;
+      var data = JSON.parse(res.data);
       var code = data.code;
       var message = data.message;
       if (code != 0) {
         util.showLoading(message);
+      } else {
+        success(res.data.data);
       }
-      success(res.data.data);
     },
     fail: function (res) {
       fail(res);
@@ -64,7 +66,6 @@ function uploadFile(url, param, filePath, success, fail) {
     }
   })
 };
-
 
 /**
  * 获取指定配置类型的基础配置信息

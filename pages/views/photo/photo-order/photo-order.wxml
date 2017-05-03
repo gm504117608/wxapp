@@ -5,9 +5,14 @@
   </view>
   <view class="zan-panel {{isClickOrder ? 'zan-panel-btn-block' : 'zan-panel-btn-none'}}">
     <button class="zan-btn zan-btn--small" bindtap="cancelOrderRecords">取消</button>
-    <button class="zan-btn zan-btn--small zan-btn--primary" bindtap="confirmOrderRecords">确定</button>    
+    <button class="zan-btn zan-btn--small zan-btn--primary" bindtap="confirmOrderRecords">确定</button>
   </view>
-  <view wx:key="id" wx:for="{{printPhoto}}" wx:for-item="item">
-    <template is="photo-order-card" data="{{photo:item}}" />
-  </view>
+  <block wx:if="{{printPhoto.length == 0}}">
+    <view class="zan-c-gray-darker zan-c-gray-tip">本店没有上传过照片信息</view>
+  </block>
+  <block wx:else>
+    <view wx:key="id" wx:for="{{printPhoto}}" wx:for-item="item">
+      <template is="photo-order-card" data="{{photo:item}}" />
+    </view>
+  </block>
 </view>

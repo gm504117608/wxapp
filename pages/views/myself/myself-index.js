@@ -28,7 +28,7 @@ Page(Object.assign({}, Zan.Switch, {
    */
   aboutUs: function () {
     wx.redirectTo({
-      url: "../about-us/about"
+      url: "../about-us/about-us"
     });
   },
 

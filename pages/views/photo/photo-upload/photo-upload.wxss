@@ -5,22 +5,7 @@
   text-align: center;
   border: 1rpx solid #e5e5e5;
   margin: 16px;
-}
-
-.icon-wrap-color-P01 {
-  background-color: #ff8247;
-}
-
-.icon-wrap-color-P02 {
-  background-color: #ff3030;
-}
-
-.icon-wrap-color-P03 {
-  background-color: #9a32cd;
-}
-
-.icon-wrap-color-P04 {
-  background-color: #436eee;
+  background-color: #C5C1AA;
 }
 
 .icon-classname {
@@ -31,4 +16,8 @@
 .zan-icon {
   font-size: 10px;
   margin: 10px;
+}
+
+.zan-c-gray-tip{
+  padding: 10px 40px;
 }

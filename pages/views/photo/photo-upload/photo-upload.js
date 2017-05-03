@@ -13,10 +13,6 @@ Page({
         var url = "shops/printCost/" + app.globalParam.shopId;
         httpClient.request(url, {}, "GET",
             function (response) {
-                var len = response.length;
-                for (var i = 0; i < len; i++) {
-                    response[i]['color'] = 'icon-wrap-color-' + response[i].code;
-                }
                 that.setData({
                     configuration: response
                 });
@@ -37,18 +33,9 @@ Page({
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
             success: function (response) {
                 // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-                console.log(response);
-
                 var path = "../photo-handle/photo-handle?type=" + code +
                     "&photoPath=" + response.tempFilePaths[0];
                 wx.redirectTo({ url: path });
-
-
-                // var tempFilePaths = response.tempFilePaths;
-                // wx.previewImage({
-                //     current: tempFilePaths[0], // 当前显示图片的http链接
-                //     urls: tempFilePaths // 需要预览的图片http链接列表
-                // });
             }
         });
     },
