@@ -9,8 +9,7 @@ Page({
     shops: [],
     pageNum: 1,
     pageSize: 10,
-    searchLoading: false, // "上拉加载"的变量，默认true，隐藏 
-    searchLoadingComplete: false  // “没有数据”的变量，默认false，隐藏 
+    searchLoadingComplete: false  // “没有数据”的变量，默认false
   },
 
   // 监听页面加载
@@ -31,9 +30,6 @@ Page({
           });
           // 将用户id存入缓存
           wx.setStorageSync("memberId", response.id);
-        },
-        function (response) {
-          console.log(response);
         });
     });
   },
@@ -49,6 +45,9 @@ Page({
    */
   getShopsInfo: function () {
     var that = this;
+    if (that.data.searchLoadingComplete) {
+      return;
+    }
     var shops = that.data.shops;
     var url = "shops?pageNum=" + that.data.pageNum + "&pageSize=" + that.data.pageSize;
     httpClient.request(url, {}, "GET",
@@ -59,24 +58,25 @@ Page({
         var pageNum = response.pageNum;
         if (null == result || result.length == 0) {
           that.setData({
-            searchLoading: false,  //把"上拉加载"的变量设为false，隐藏 
-            searchLoadingComplete: true //把“没有数据”设为true，显示 
+            searchLoadingComplete: true
           });
         } else {
-          for (var i = 0; i < result.length; i++) {
+          var len = result.length;
+          for (var i = 0; i < len; i++) {
             shops.push(result[i]);
           }
           that.setData({
             shops: shops,
             pageSize: pageSize,
             pageNum: pageNum,
-            searchLoading: true,   //把"上拉加载"的变量设为false，显示 
-            searchLoadingComplete: false //把“没有数据”设为true，显示 
+            searchLoadingComplete: false
           });
+          if (len < app.globalParam.pageSize) {
+            that.setData({
+              searchLoadingComplete: true
+            });
+          }
         }
-      },
-      function (response) {
-        console.log(response);
       });
   },
 
@@ -88,7 +88,8 @@ Page({
     let that = this;
     that.setData({
       shops: [],
-      pageNum: 1 // 初始化查询第一页数据
+      pageNum: 1, // 初始化查询第一页数据
+      searchLoadingComplete: false
     });
     that.getShopsInfo();
     // 小程序提供的api，通知页面停止下拉刷新效果
@@ -101,7 +102,7 @@ Page({
   onReachBottom: function () {
     console.log("上拉刷新。。。。");
     let that = this;
-    if (that.data.searchLoading) {
+    if (!that.data.searchLoadingComplete) {
       that.setData({
         pageNum: that.data.pageNum + 1, //每次触发上拉事件，把pageNum+1
       });

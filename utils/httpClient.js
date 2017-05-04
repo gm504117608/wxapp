@@ -5,6 +5,7 @@ var app = getApp();
  * 非文件上传请求方法
  */
 function request(url, param, method, success, fail) {
+  wx.showLoading({ "title": "正在加载中...", "mask": true });
   wx.request({
     url: app.globalParam.serverUrl + url,
     data: param,
@@ -20,16 +21,20 @@ function request(url, param, method, success, fail) {
       var code = data.code;
       var message = data.message;
       if (code != 0) {
-        util.showLoading(message);
+        util.showModal(message);
       } else {
         success(res.data.data);
       }
     },
     fail: function (res) {
-      fail(res);
+      util.showModal("亲，系统生病了需要去看医生。");
+      if (null != fail && (typeof fail) == 'function') {
+        fail(res);
+      }
     },
     complete: function (res) {
       // complete
+      wx.hideLoading();
     }
   })
 };
@@ -38,6 +43,7 @@ function request(url, param, method, success, fail) {
  * 文件上传请求方法
  */
 function uploadFile(url, param, filePath, success, fail) {
+  wx.showLoading({ "title": "正在加载中...", "mask": true });
   var path = app.globalParam.serverUrl + url;
   wx.uploadFile({
     url: path,
@@ -53,16 +59,19 @@ function uploadFile(url, param, filePath, success, fail) {
       var code = data.code;
       var message = data.message;
       if (code != 0) {
-        util.showLoading(message);
+        util.showModal(message);
       } else {
         success(res.data.data);
       }
     },
     fail: function (res) {
-      fail(res);
+      util.showModal("亲，系统生病了需要去看医生。");
+      if (null != fail && (typeof fail) == 'function') {
+        fail(res);
+      }
     },
     complete: function (res) {
-      // complete
+      wx.hideLoading();
     }
   })
 };

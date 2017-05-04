@@ -24,13 +24,47 @@ function isNotNull(sInputs) {
   return !(isNull(sInputs));
 }
 
-/**页面加载提示显示 */
-function showLoading(title) {
-  wx.showToast({
-    title: title,
-    icon: 'success',
-    duration: 3000
-  });
+/**
+ * 页面加载提示显示 
+ * @param title 显示标题
+ * @param icon 图标，有效值 "success", "loading"	
+ * @param image 自定义图标的本地路径，image 的优先级高于 icon
+ * @param isAutoDisappear 是否需要设置提示延迟时间 true false 默认 false
+ * @param duration 延迟时间 当isAutoDisappear为true是需要设置 不设置默认3000
+ * @param mask 是否显示透明蒙层，防止触摸穿透，默认：false
+ * */
+function showLoading(title, icon, image, isAutoDisappear, duration, mask) {
+  if (isNull(title)) {
+    title = "默认提示";
+  }
+  if (isNull(icon)) {
+    icon = "success";
+  }
+  if (isNull(isAutoDisappear)) {
+    isAutoDisappear = false;
+  }
+  if (isAutoDisappear) {
+    duration = 3000;
+  }
+  if (isNull(mask)) {
+    mask = false;
+  }
+  if (isAutoDisappear) {
+    wx.showToast({
+      title: title,
+      icon: icon,
+      duration: duration,
+      image: image,
+      mask: mask
+    });
+  } else {
+    wx.showToast({
+      title: title,
+      icon: icon,
+      image: image,
+      mask: mask
+    });
+  }
 }
 
 /**页面加载提示关闭 */
@@ -41,7 +75,7 @@ function cancelLoading() {
 /**
  * 显示弹出框提示信息
  */
-function showModaling(msg) {
+function showModal(msg) {
   wx.showModal({
     title: '提示',
     content: msg,
@@ -52,7 +86,6 @@ function showModaling(msg) {
       }
     }
   });
-
 }
 
 /**
@@ -82,7 +115,7 @@ function fillUpMoneyTwoDecimals(money) {
 module.exports = {
   showLoading: showLoading,
   cancelLoading: cancelLoading,
-  showModaling: showModaling,
+  showModal: showModal,
   isNull: isNull,
   isNotNull: isNotNull,
   getArrayIndexByValue: getArrayIndexByValue,

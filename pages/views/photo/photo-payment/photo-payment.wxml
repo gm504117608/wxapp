@@ -2,7 +2,7 @@
 <view class="container">
   <view class="zan-panel">
     <button class="zan-btn zan-btn--small zan-btn--primary" bindtap="paymentOrder">支付</button>
-    <view>金额 ： {{cost}}</view>
+    <view class="zan-cost">金额:{{cost}}</view>
   </view>
   <view wx:key="id" wx:for="{{printPhoto}}" wx:for-item="item">
     <template is="photo-payment-card" data="{{photo: item}}" />

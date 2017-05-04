@@ -41,16 +41,13 @@
         </view>
         <view class="zan-card__detail-row zan-c-gray-darker">
           <view class="zan-card__right-col" wx:if="{{reservation.status === 'S01'}}">
-            <button class="zan-btn zan-btn--small zan-btn--primary" data-order-no="{{reservation.orderNo}}" 
-            bindtap="paymentOrder">支付</button>
+            <button class="zan-btn zan-btn--small zan-btn--primary" data-order-no="{{reservation.orderNo}}" bindtap="paymentOrder">支付</button>
           </view>
           <view class="zan-card__right-col" wx:if="{{reservation.status === 'S03'}}">
-            <button class="zan-btn zan-btn--small zan-btn--primary" data-order-no="{{reservation.orderNo}}" 
-            bindtap="confirmConsignment">确认收货</button>
+            <button class="zan-btn zan-btn--small zan-btn--primary" data-order-no="{{reservation.orderNo}}" bindtap="confirmConsignment">确认收货</button>
           </view>
           <view class="zan-card__right-col" wx:if="{{reservation.status === 'S04'}}">
-            <button class="zan-btn zan-btn--small zan-btn--primary" data-order-no="{{reservation.orderNo}}" 
-            bindtap="estimateOrder">去评论</button>
+            <button class="zan-btn zan-btn--small zan-btn--primary" data-order-no="{{reservation.orderNo}}" bindtap="estimateOrder">去评论</button>
           </view>
           <view class="zan-card__left-col">{{reservation.createTime}}</view>
         </view>

@@ -5,3 +5,9 @@
 .zan-card__detail-padding {
   padding-top: 10px;
 }
+
+.zan-cost {
+  color: #ff3030;
+  float: right;
+  padding-top: 7px;
+}

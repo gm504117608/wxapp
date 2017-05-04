@@ -6,28 +6,46 @@ var app = getApp();
 Page({
     data: {
         'printPhoto': [], // 打印照片信息
+        'pageNum': 1,
+        'pageSize': 10,
+        'searchLoadingComplete': false,  // “没有数据”的变量，默认false，隐藏 
         'isClickOrder': false // 是否点击下单按钮
     },
 
     onLoad: function () {
         var that = this;
-        var url = "/shops/photos/" + app.globalParam.shopId + "/" + wx.getStorageSync('memberId');
-        httpClient.request(url, {}, "GET",
-            function (response) {
-                if (util.isNotNull(response)) {
-                    var len = response.length;
-                    for (var i = 0; i < len; i++) {
-                        response[i]['storeUrl'] = app.globalParam.serverUrl + response[i].storeUrl;
-                        response[i]['select'] = '';
-                    }
-                }
-                that.setData({
-                    'printPhoto': response
-                });
-            },
-            function (response) {
-                console.log(response);
+        that.setData({ pageSize: app.globalParam.pageSize });
+        that.getPrintPhotographInfo();
+    },
+
+    /**
+   * 下拉刷新回调接口
+   */
+    onPullDownRefresh: function () {
+        console.log("下拉刷新。。。。");
+        let that = this;
+        that.setData({
+            printPhoto: [],
+            pageNum: 1, // 初始化查询第一页数据
+            searchLoadingComplete: false //把“没有数据”设为true，显示 
+        });
+        that.getPrintPhotographInfo();
+        // 小程序提供的api，通知页面停止下拉刷新效果
+        wx.stopPullDownRefresh;
+    },
+
+    /**
+     * 上拉加载回调接口
+     */
+    onReachBottom: function () {
+        console.log("上拉刷新。。。。");
+        let that = this;
+        if (!that.data.searchLoadingComplete) {
+            that.setData({
+                pageNum: that.data.pageNum + 1, //每次触发上拉事件，把pageNum+1
             });
+            that.getPrintPhotographInfo();
+        }
     },
 
     /**
@@ -109,4 +127,51 @@ Page({
                 console.log(response);
             });
     },
+
+
+    /**
+     * 获取店铺会员上传历史照片信息
+     */
+    getPrintPhotographInfo: function () {
+        var that = this;
+        if (that.data.searchLoadingComplete) {
+            return;
+        }
+        var printPhoto = that.data.printPhoto;
+        var url = "/shops/photos?shopId=" + app.globalParam.shopId + "&memberId=" + wx.getStorageSync('memberId') +
+            "&pageNum=" + that.data.pageNum + "&pageSize=" + that.data.pageSize;;
+        httpClient.request(url, {}, "GET",
+            function (response) {
+                var result = response.result;
+                var pageSize = response.pageSize;
+                var pageNum = response.pageNum;
+                if (null == result || result.length == 0) {
+                    that.setData({
+                        searchLoadingComplete: true //把“没有数据”设为true，显示 
+                    });
+                } else {
+                    var len = result.length;
+                    for (var i = 0; i < len; i++) {
+                        result[i]['storeUrl'] = app.globalParam.serverUrl + result[i].storeUrl;
+                        result[i]['select'] = '';
+                        printPhoto.push(result[i]);
+                    }
+                    that.setData({
+                        printPhoto: printPhoto,
+                        pageSize: pageSize,
+                        pageNum: pageNum,
+                        searchLoadingComplete: false //把“没有数据”设为true，显示 
+                    });
+                    // 获取的数据少于没有的数量表示已经没有数据了
+                    if (len < app.globalParam.pageSize) {
+                        that.setData({
+                            searchLoadingComplete: true //把“没有数据”设为true，显示 
+                        });
+                    }
+                }
+            },
+            function (response) {
+                console.log(response);
+            });
+    }
 })

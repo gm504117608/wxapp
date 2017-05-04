@@ -1,7 +1,7 @@
 <import src="../../../dist/tab/index.wxml" />
 <import src="../../templates/order-show-card.wxml" />
 <view class="container">
-  <view style="margin-bottom: 10px; position: fixed; background-color: red;">
+  <view style="margin-bottom: 10px; position: fixed;">
     <template is="zan-tab" data="{{tab: orderTab, componentId: 'orderTab'}}"></template>
   </view>
   <view style="padding-top: 45px;">
@@ -34,6 +34,7 @@
       <view wx:key="id" wx:for="{{reservations}}" wx:for-item="item">
         <template is="order-show-all-card" data="{{reservation: item}}"></template>
       </view>
+      <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
     </block>
   </view>
 </view>

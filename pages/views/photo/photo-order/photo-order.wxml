@@ -14,5 +14,6 @@
     <view wx:key="id" wx:for="{{printPhoto}}" wx:for-item="item">
       <template is="photo-order-card" data="{{photo:item}}" />
     </view>
+    <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
   </block>
 </view>

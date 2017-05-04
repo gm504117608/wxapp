@@ -21,3 +21,27 @@
   padding-top: 50px;
   padding-left: 60px;
 }
+
+.loading {
+  padding: 10rpx;
+  text-align: center;
+  font-size: 15px;
+}
+
+.loading:before {
+  display: inline-block;
+  margin-right: 5rpx;
+  vertical-align: middle;
+  content: '';
+  width: 40rpx;
+  height: 40rpx;
+  background: url(../resources/images/icon_loading.gif) no-repeat;
+  background-size: contain;
+  animation: rotate 1s linear infinite;
+  font-size: 15px;
+}
+
+.loading.complete:before {
+  display: none;
+  font-size: 15px;
+}
