@@ -33,7 +33,6 @@ function request(url, param, method, success, fail) {
       }
     },
     complete: function (res) {
-      // complete
       wx.hideLoading();
     }
   })
@@ -89,9 +88,6 @@ function getConfigInfoByType(types) {
         // 将配置信息存入缓存
         result = response;
         wx.setStorageSync("types", result);
-      },
-      function (response) {
-        console.log(response);
       });
   }
   return result;

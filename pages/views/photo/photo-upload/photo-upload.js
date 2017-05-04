@@ -16,9 +16,6 @@ Page({
                 that.setData({
                     configuration: response
                 });
-            },
-            function (response) {
-                console.log(response);
             });
     },
 

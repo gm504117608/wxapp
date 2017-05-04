@@ -16,7 +16,7 @@
         <view class="zan-card__detail-row zan-c-gray-darker">
           <view class="zan-card__right-col"></view>
           <view class="zan-card__left-col">
-            {{shop.district}} {{shop.address}}
+            {{shop.provinceName}}{{shop.cityName}}{{shop.areaName}}{{shop.address}}
           </view>
         </view>
       </view>

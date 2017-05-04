@@ -6,13 +6,45 @@ var app = getApp();
 
 Page(Object.assign({}, Zan.Tab, {
     data: {
-        reservations: [],
-        pageNum: 1,
-        pageSize: 10,
-        searchLoadingComplete: false,  // “没有数据”的变量，默认false，隐藏 
+        reservationsAll: {
+            reservations: [],
+            pageNum: 1,
+            pageSize: app.globalParam.pageSize,
+            searchLoadingComplete: false,  // “没有数据”的变量，默认false，隐藏 
+        },
+        reservationsS01: {
+            reservations: [],
+            pageNum: 1,
+            pageSize: app.globalParam.pageSize,
+            searchLoadingComplete: false,  // “没有数据”的变量，默认false，隐藏 
+        },
+        reservationsS02: {
+            reservations: [],
+            pageNum: 1,
+            pageSize: app.globalParam.pageSize,
+            searchLoadingComplete: false,  // “没有数据”的变量，默认false，隐藏 
+        },
+        reservationsS03: {
+            reservations: [],
+            pageNum: 1,
+            pageSize: app.globalParam.pageSize,
+            searchLoadingComplete: false,  // “没有数据”的变量，默认false，隐藏 
+        },
+        reservationsS04: {
+            reservations: [],
+            pageNum: 1,
+            pageSize: app.globalParam.pageSize,
+            searchLoadingComplete: false,  // “没有数据”的变量，默认false，隐藏 
+        },
+        reservationsS05: {
+            reservations: [],
+            pageNum: 1,
+            pageSize: app.globalParam.pageSize,
+            searchLoadingComplete: false,  // “没有数据”的变量，默认false，隐藏 
+        },
         orderTab: {
             list: [{
-                id: 'all',
+                id: 'All',
                 title: '全部'
             }, {
                 id: 'S01',
@@ -30,14 +62,13 @@ Page(Object.assign({}, Zan.Tab, {
                 id: 'S05',
                 title: '已完成'
             }],
-            selectedId: 'all',
+            selectedId: 'All',
             scroll: false
         }
     },
 
     onLoad: function () {
-        this.setData({ pageSize: app.globalParam.pageSize });
-        this.getReservationsInfo('');
+        this.getReservationsInfo('All');
     },
 
     /**
@@ -46,6 +77,14 @@ Page(Object.assign({}, Zan.Tab, {
     handleZanTabChange: function (e) {
         var componentId = e.componentId;
         var selectedId = e.selectedId;
+        // 点击tab的时候设置该tab下面的信息
+        var reservationsName = "reservations" + selectedId;
+        this.setData({
+            [`${reservationsName}.reservations`]: [],
+            [`${reservationsName}.pageSize`]: app.globalParam.pageSize,
+            [`${reservationsName}.pageNum`]: 1,
+            [`${reservationsName}.searchLoadingComplete`]: false
+        });
         this.getReservationsInfo(selectedId);
     },
 
@@ -54,17 +93,19 @@ Page(Object.assign({}, Zan.Tab, {
      * @param status 订单状态
      */
     getReservationsInfo: function (status) {
-        if (status == "all") {
+        var that = this;
+        var reservationsName = "reservations" + status;
+        if (status == "All") {
             status = "";
         }
-        var that = this;
-        //  获取订单数据
+        var pageNum = that.data[reservationsName].pageNum;
+        var pageSize = that.data[reservationsName].pageSize;
         var url = "/orders?memberId=" + wx.getStorageSync('memberId') + "&status=" + status +
-            "&pageNum=" + that.data.pageNum + "&pageSize=" + that.data.pageSize;
+            "&pageNum=" + pageNum + "&pageSize=" + pageSize;
         httpClient.request(url, {}, "GET",
             function (response) {
                 if (util.isNull(status)) {
-                    status = "all";
+                    status = "All";
                 }
                 var result = response.result;
                 var pageSize = response.pageSize;
@@ -72,30 +113,27 @@ Page(Object.assign({}, Zan.Tab, {
                 if (null == result || result.length == 0) {
                     that.setData({
                         [`orderTab.selectedId`]: status,
-                        searchLoadingComplete: true
+                        [`${reservationsName}.searchLoadingComplete`]: true
                     });
                 } else {
-                    var reservations = [];
+                    var reservations = that.data[reservationsName].reservations;
                     var len = result.length;
                     for (var i = 0; i < len; i++) {
                         reservations.push(result[i]);
                     }
                     that.setData({
-                        'reservations': reservations,
+                        [`${reservationsName}.reservations`]: reservations,
                         [`orderTab.selectedId`]: status,
-                        pageSize: pageSize,
-                        pageNum: pageNum,
-                        searchLoadingComplete: false
+                        [`${reservationsName}.pageSize`]: pageSize,
+                        [`${reservationsName}.pageNum`]: pageNum,
+                        [`${reservationsName}.searchLoadingComplete`]: false
                     });
                     if (len < app.globalParam.pageSize) {
                         that.setData({
-                            searchLoadingComplete: true
+                            [`${reservationsName}.searchLoadingComplete`]: true
                         });
                     }
                 }
-            },
-            function (response) {
-                console.log(response);
             });
     },
 
@@ -105,12 +143,14 @@ Page(Object.assign({}, Zan.Tab, {
     onPullDownRefresh: function () {
         console.log("下拉刷新。。。。");
         let that = this;
+        var selectedId = that.data.orderTab.selectedId;
+        var reservationsName = "reservations" + selectedId;
         that.setData({
-            reservations: [],
-            pageNum: 1, // 初始化查询第一页数据
-            searchLoadingComplete: false
+            [`${reservationsName}.reservations`]: [],
+            [`${reservationsName}.pageNum`]: 1, // 初始化查询第一页数据
+            [`${reservationsName}.searchLoadingComplete`]: false
         });
-        that.getReservationsInfo();
+        that.getReservationsInfo(selectedId);
         // 小程序提供的api，通知页面停止下拉刷新效果
         wx.stopPullDownRefresh;
     },
@@ -121,11 +161,13 @@ Page(Object.assign({}, Zan.Tab, {
     onReachBottom: function () {
         console.log("上拉刷新。。。。");
         let that = this;
-        if (!that.data.searchLoadingComplete) {
+        var selectedId = that.data.orderTab.selectedId;
+        var reservationsName = "reservations" + selectedId;
+        if (!that.data[reservationsName].searchLoadingComplete) {
             that.setData({
-                pageNum: that.data.pageNum + 1, //每次触发上拉事件，把pageNum+1
+                [`${reservationsName}.pageNum`]: that.data[reservationsName].pageNum + 1, //每次触发上拉事件，把pageNum+1
             });
-            that.getReservationsInfo();
+            that.getReservationsInfo(selectedId);
         }
     },
 

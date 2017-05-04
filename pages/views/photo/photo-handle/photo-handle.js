@@ -30,9 +30,6 @@ Page({
                         'typesetting': response.typesetting, // 排版
                         'remark': response.remark // 备注信息
                     });
-                },
-                function (response) {
-                    console.log(response);
                 });
         } else { // 新增
             that.setData({
@@ -102,18 +99,12 @@ Page({
                 function (response) {
                     var path = "../photo-order/photo-order";
                     wx.redirectTo({ url: path });
-                },
-                function (response) {
-                    console.log(response);
                 });
         } else {
             httpClient.request("/shops/photos", param, "POST",
                 function (response) {
                     var path = "../photo-order/photo-order";
                     wx.redirectTo({ url: path });
-                },
-                function (response) {
-                    console.log(response);
                 });
         }
 

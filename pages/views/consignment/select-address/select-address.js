@@ -58,9 +58,6 @@ Page(Object.assign({}, Zan.Switch, {
                         areaIndex: areaIndex,
                         checked: isUsing
                     });
-                },
-                function (response) {
-                    console.log(response);
                 });
         }
 
@@ -136,9 +133,6 @@ Page(Object.assign({}, Zan.Switch, {
                     provinceName: provinceName,
                     provinceCode: provinceCode
                 });
-            },
-            function (response) {
-                console.log(response);
             });
     },
 
@@ -162,9 +156,6 @@ Page(Object.assign({}, Zan.Switch, {
                     cityName: cityName,
                     cityCode: cityCode
                 });
-            },
-            function (response) {
-                console.log(response);
             });
     },
 
@@ -188,9 +179,6 @@ Page(Object.assign({}, Zan.Switch, {
                     areaName: areaName,
                     areaCode: areaCode
                 });
-            },
-            function (response) {
-                console.log(response);
             });
     },
 
@@ -259,9 +247,6 @@ Page(Object.assign({}, Zan.Switch, {
                 wx.redirectTo({
                     url: "../consignee-address/consignment-address"
                 });
-            },
-            function (response) {
-                console.log(response);
             });
     }
 }));

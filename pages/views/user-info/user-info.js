@@ -24,9 +24,6 @@ Page({
                     email: response.email,
                     signature: response.signature
                 });
-            },
-            function (response) {
-                console.log(response);
             });
     },
 
@@ -71,9 +68,6 @@ Page({
                 wx.redirectTo({
                     url: "../myself/myself-index"
                 });
-            },
-            function (response) {
-                console.log(response);
             });
     }
 });

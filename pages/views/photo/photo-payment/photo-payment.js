@@ -32,9 +32,6 @@ Page(Object.assign({}, Zan.Quantity, {
                     'printPhoto': response,
                     'cost': cost
                 });
-            },
-            function (response) {
-                console.log(response);
             });
     },
 
@@ -85,9 +82,6 @@ Page(Object.assign({}, Zan.Quantity, {
             function (response) {
                 var path = "../../order/payment";
                 wx.redirectTo({ url: path });
-            },
-            function (response) {
-                console.log(response);
             });
     }
 }));

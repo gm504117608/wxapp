@@ -8,14 +8,13 @@ Page({
   data: {
     shops: [],
     pageNum: 1,
-    pageSize: 10,
+    pageSize: app.globalParam.pageSize,
     searchLoadingComplete: false  // “没有数据”的变量，默认false
   },
 
   // 监听页面加载
   onLoad: function () {
     var that = this;
-    that.setData({ pageSize: app.globalParam.pageSize });
     /**
      * 调用自己的应用处理用户信息
      */
@@ -45,9 +44,6 @@ Page({
    */
   getShopsInfo: function () {
     var that = this;
-    if (that.data.searchLoadingComplete) {
-      return;
-    }
     var shops = that.data.shops;
     var url = "shops?pageNum=" + that.data.pageNum + "&pageSize=" + that.data.pageSize;
     httpClient.request(url, {}, "GET",

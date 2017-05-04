@@ -16,9 +16,6 @@ Page({
     httpClient.request(url, param, "GET",
       function (response) {
         that.setData({ consignmentAddress: response });
-      },
-      function (response) {
-        console.log(response);
       });
   },
 

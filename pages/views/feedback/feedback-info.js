@@ -23,9 +23,6 @@ Page({
                 that.setData({
                     configuration: response
                 });
-            },
-            function (response) {
-                console.log(response);
             });
     },
 
@@ -77,12 +74,9 @@ Page({
         httpClient.request("feedback/", param, "POST",
             function (response) {
                 // 返回上一界面
-                wx.redirectTo({
+                wx.switchTab({
                     url: "../myself/myself-index"
                 });
-            },
-            function (response) {
-                console.log(response);
             });
     },
 })

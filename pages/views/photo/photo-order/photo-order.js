@@ -7,14 +7,13 @@ Page({
     data: {
         'printPhoto': [], // 打印照片信息
         'pageNum': 1,
-        'pageSize': 10,
+        'pageSize': app.globalParam.pageSize,
         'searchLoadingComplete': false,  // “没有数据”的变量，默认false，隐藏 
         'isClickOrder': false // 是否点击下单按钮
     },
 
     onLoad: function () {
         var that = this;
-        that.setData({ pageSize: app.globalParam.pageSize });
         that.getPrintPhotographInfo();
     },
 
@@ -122,9 +121,6 @@ Page({
             function (response) {
                 var path = "../photo-payment/photo-payment?id=" + id.substring(1) + "&orderNo=" + response;
                 wx.redirectTo({ url: path });
-            },
-            function (response) {
-                console.log(response);
             });
     },
 
@@ -169,9 +165,6 @@ Page({
                         });
                     }
                 }
-            },
-            function (response) {
-                console.log(response);
             });
     }
 })
