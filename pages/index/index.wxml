@@ -3,5 +3,5 @@
   <view wx:key="id" wx:for="{{shops}}" wx:for-item="item">
     <template is="shop-card" data="{{shop:item}}" />
   </view>
-  <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+  <view class="loading complete" hidden="{{!searchLoadingComplete}}">我是有底线的</view>
 </view>

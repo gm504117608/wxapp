@@ -3,9 +3,20 @@ var app = getApp();
 
 /**
  * 非文件上传请求方法
+ * @param url 请求url地址
+ * @param param 请求参数
+ * @param method 请求类型 get post
+ * @param success 成功回调函数
+ * @param fail 失败回调函数
+ * @param isShowLoading 是否显示加载提示 默认 true 
  */
-function request(url, param, method, success, fail) {
-  wx.showLoading({ "title": "正在加载中...", "mask": true });
+function request(url, param, method, success, fail, isShowLoading) {
+  if (util.isNull(isShowLoading)) {
+    isShowLoading = true;
+  }
+  if (isShowLoading) {
+    wx.showLoading({ "title": "正在加载中...", "mask": true });
+  }
   wx.request({
     url: app.globalParam.serverUrl + url,
     data: param,
@@ -33,7 +44,9 @@ function request(url, param, method, success, fail) {
       }
     },
     complete: function (res) {
-      wx.hideLoading();
+      if (isShowLoading) {
+        wx.hideLoading();
+      }
     }
   })
 };
@@ -75,26 +88,7 @@ function uploadFile(url, param, filePath, success, fail) {
   })
 };
 
-/**
- * 获取指定配置类型的基础配置信息
- * @param type 配置类型 
- */
-function getConfigInfoByType(types) {
-  var result = wx.getStorageSync(types);
-  if (isNull(result)) {
-    var url = "/orders/config/" + types;
-    httpClient.request(url, {}, "GET",
-      function (response) {
-        // 将配置信息存入缓存
-        result = response;
-        wx.setStorageSync("types", result);
-      });
-  }
-  return result;
-};
-
 module.exports = {
   request: request,
-  uploadFile: uploadFile,
-  getConfigInfoByType: getConfigInfoByType
+  uploadFile: uploadFile
 }

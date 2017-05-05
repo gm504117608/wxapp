@@ -37,9 +37,6 @@ function showLoading(title, icon, image, isAutoDisappear, duration, mask) {
   if (isNull(title)) {
     title = "默认提示";
   }
-  if (isNull(icon)) {
-    icon = "success";
-  }
   if (isNull(isAutoDisappear)) {
     isAutoDisappear = false;
   }

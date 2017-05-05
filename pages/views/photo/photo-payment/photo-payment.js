@@ -8,8 +8,10 @@ Page(Object.assign({}, Zan.Quantity, {
     data: {
         'orderNo': '',
         'printPhoto': [], // 打印照片信息
-        'cost': 0 // 需要支付的金额
-
+        'cost': 0, // 需要支付的金额
+        'consignmentAddress': {}, // 收件人地址
+        'dispatchingWays': [], // 配送方式
+        'dispatchingWay': '' // 选择的配送方式
     },
 
     onLoad: function (option) {
@@ -18,19 +20,24 @@ Page(Object.assign({}, Zan.Quantity, {
         var url = "/shops/payment/" + option.id;
         httpClient.request(url, {}, "GET",
             function (response) {
+                that.setData({
+                    'consignmentAddress': response.consigneeAddress,
+                    'dispatchingWays': response.dispatchingWays
+                });
+                var printPhoto = response.printPhoto;
                 var cost = 0;
-                if (util.isNotNull(response)) {
-                    var len = response.length;
+                if (util.isNotNull(printPhoto)) {
+                    var len = printPhoto.length;
                     for (var i = 0; i < len; i++) {
-                        response[i]['amount' + response[i].id] = { quantity: 1, min: 1, max: 50 };
-                        cost = cost + response[i]['price'];
-                        response[i]['storeUrl'] = app.globalParam.serverUrl + response[i].storeUrl;
+                        printPhoto[i]['amount' + printPhoto[i].id] = { quantity: 1, min: 1, max: 50 };
+                        cost = cost + printPhoto[i]['price'];
+                        printPhoto[i]['storeUrl'] = app.globalParam.serverUrl + printPhoto[i].storeUrl;
                     }
                 }
                 cost = util.fillUpMoneyTwoDecimals(cost);
                 that.setData({
-                    'printPhoto': response,
-                    'cost': cost
+                    'printPhoto': printPhoto,
+                    'cost': cost,
                 });
             });
     },
@@ -59,11 +66,51 @@ Page(Object.assign({}, Zan.Quantity, {
     },
 
     /**
+     * 修改收件人地址
+     */
+    editConsignmentAddress: function () {
+        var that = this;
+        // 获取收货地址数据
+        var param = {};
+        var url = "consignment/members/" + wx.getStorageSync('memberId');
+        httpClient.request(url, param, "GET",
+            function (response) {
+                var len = response.length;
+                var address = {};
+                for (var i = 0; i < len; i++) {
+                    if (response[i].isUsing == 1) {
+                        address = response[i];
+                    }
+                }
+                that.setData({ consignmentAddress: address });
+            });
+    },
+
+    /**
+     * 修改配送方式
+     */
+    dispatchingWayChange: function (event) {
+        var value = event.detail.value;
+        that.setData({ 'dispatchingWay': value });
+    },
+
+    /**
      * 支付订单
      */
     paymentOrder: function () {
         var that = this;
         var printPhoto = that.data.printPhoto;
+        if(util.isNull(printPhoto)){
+            wx.showToast({ title: '无打印照片信息' });
+        }
+        var consignmentAddress = that.data.consignmentAddress;
+        if(util.isNull(consignmentAddress)){
+            wx.showToast({ title: '请选择收货地址' });
+        }
+        var dispatchingWay = that.data.dispatchingWay;
+        if(util.isNull(dispatchingWay)){
+            wx.showToast({ title: '请选择配送方式' });
+        }
         var ids = '';
         var amounts = '';
         var len = printPhoto.length;
@@ -75,7 +122,9 @@ Page(Object.assign({}, Zan.Quantity, {
             'cost': that.data.cost,
             'orderNo': that.data.orderNo,
             'ids': ids.substring(1),
-            'amounts': amounts.substring(1)
+            'amounts': amounts.substring(1),
+            'consignmentId': consignmentAddress.id,
+            'dispatchingWay': dispatchingWay
         };
         var url = "/orders/payment";
         httpClient.request(url, param, "POST",

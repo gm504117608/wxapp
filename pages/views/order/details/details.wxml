@@ -1,0 +1,50 @@
+<view class="container">
+  <view class="zan-panel">
+    <view>收件人信息</view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">{{detail.name}}</view>
+      <view class="zan-cell__ft">{{detail.mobile}}</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">{{detail.address}}</view>
+    </view>
+  </view>
+  <view class="zan-panel">
+    <view>订单信息</view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">{{detail.shopName}}</view>
+      <view class="zan-cell__ft">{{detail.orderNo}}</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd" style="color: red">金额:{{detail.cost}}</view>
+      <view class="zan-cell__ft">{{detail.statusName}}</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">{{detail.remark}}</view>
+      <view class="zan-cell__ft">{{detail.createTime}}</view>
+    </view>
+  </view>
+  <view class="zan-panel">
+    <view>订单详细信息</view>
+    <view wx:key="storeUrl" wx:for="{{detail.printPhotoList}}" wx:for-item="item">
+      <view class="zan-card">
+        <view class="zan-card__thumb">
+          <image class="zan-card__img" src="{{serverUrl}}{{item.storeUrl}}" mode="aspectFit"></image>
+        </view>
+        <view class="zan-card__detail">
+          <view class="zan-card__detail-row">
+            <view class="zan-card__left-col zan-ellipsis--l2">
+              {{item.description}}
+            </view>
+          </view>
+          <view class="zan-card__detail-row zan-c-gray-darker">
+            <view class="zan-card__right-col">{{item.type}} </view>
+            <view class="zan-card__left-col">
+              打印数量:{{item.amount}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

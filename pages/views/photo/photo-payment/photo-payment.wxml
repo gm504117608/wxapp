@@ -7,4 +7,31 @@
   <view wx:key="id" wx:for="{{printPhoto}}" wx:for-item="item">
     <template is="photo-payment-card" data="{{photo: item}}" />
   </view>
+  <view class="zan-panel">
+    <view class="zan-card" bindtap="editConsignmentAddress">
+      <view class="zan-card__detail-row zan-c-gray-darker">
+        <view class="zan-card__right-col">{{consignmentAddress.name}} </view>
+        <view class="zan-card__left-col">
+          {{consignmentAddress.mobile}}
+        </view>
+      </view>
+      <view class="zan-card__detail-row zan-c-gray-darker">
+        <view class="zan-card__left-col">
+          {{consignmentAddress.address}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">配送方式</view>
+      <view class="zan-cell__ft">
+        <radio-group class="radio-group" bindchange="dispatchingWayChange">
+          <label class="radio" wx:key="id" wx:for-item="item" wx:for="{{dispatchingWays}}">
+            <radio value="{{item.code}}" />{{item.description}}
+          </label>
+        </radio-group>
+      </view>
+    </view>
+  </view>
 </view>

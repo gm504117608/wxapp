@@ -176,8 +176,17 @@ Page(Object.assign({}, Zan.Tab, {
      */
     paymentOrder: function (event) {
         var orderNo = event.currentTarget.dataset.orderNo;
-        console.log(orderNo);
-        var path = "../../order/payment?orderNo" + orderNo;
+        var path = "../../order/payment?orderNo=" + orderNo;
+        wx.redirectTo({ url: path });
+    },
+
+
+    /**
+     * 显示订单详情
+     */
+    viewReservationDetail: function (event) {
+        var orderNo = event.currentTarget.dataset.orderNo;
+        var path = "../details/details?orderNo=" + orderNo;
         wx.redirectTo({ url: path });
     }
 }));

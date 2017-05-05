@@ -1,8 +1,8 @@
 
 <!-- 订单全部信息显示模板 -->
 <template name="order-show-all-card">
-  <view class="zan-panel" data-reservation-id="{{reservation.id}}">
-    <view class="zan-card" style="height: 80px;">
+  <view class="zan-panel">
+    <view class="zan-card" style="height: 80px;" data-order-no="{{reservation.orderNo}}" bindtap="viewReservationDetail">
       <view class="zan-card__thumb">{{reservation.cost}}</view>
       <view class="zan-card__detail zan-card__detail-margin">
         <view class="zan-card__detail-row">
@@ -27,8 +27,8 @@
 
 <!-- 订单非全部信息显示模板 -->
 <template name="order-show-other-card">
-  <view class="zan-panel" data-reservation-id="{{reservation.id}}">
-    <view class="zan-card" style="height: 80px;">
+  <view class="zan-panel">
+    <view class="zan-card" style="height: 80px;" data-order-no="{{reservation.orderNo}}" bindtap="viewReservationDetail">
       <view class="zan-card__thumb">{{reservation.cost}}</view>
       <view class="zan-card__detail zan-card__detail-margin">
         <view class="zan-card__detail-row">
