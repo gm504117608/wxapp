@@ -1,3 +1,6 @@
+<import src="../../dist/toast/index.wxml" />
+
+
 <view class="container">
   <view class="zan-panel-title">反馈类型</view>
   <view class="zan-panel-feedback">
@@ -23,4 +26,7 @@
       <button class="zan-btn zan-btn--primary" bindtap="saveFeedbackInfo">提交</button>
     </view>
   </view>
+
+  <template is="zan-toast" data="{{ zanToast }}"></template>
+
 </view>

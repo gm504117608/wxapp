@@ -1,9 +1,6 @@
 <import src="../../templates/photo-payment-card.wxml" />
+<import src="../../../dist/toast/index.wxml" />
 <view class="container">
-  <view class="zan-panel">
-    <button class="zan-btn zan-btn--small zan-btn--primary" bindtap="paymentOrder">支付</button>
-    <view class="zan-cost">金额:{{cost}}</view>
-  </view>
   <view wx:key="id" wx:for="{{printPhoto}}" wx:for-item="item">
     <template is="photo-payment-card" data="{{photo: item}}" />
   </view>
@@ -31,6 +28,16 @@
             <radio value="{{item.code}}" />{{item.description}}
           </label>
         </radio-group>
+      </view>
+    </view>
+  </view>
+  <template is="zan-toast" data="{{ zanToast }}"></template>
+
+  <view class="zan-panel" style="position:fixed; bottom:0rpx;">
+    <view class="zan-card">
+      <view class="zan-card__detail-row">
+        <view class="zan-card__right-col zan-cost">￥ {{cost}}</view>
+        <view class="zan-card__left-col" bindtap="paymentOrder">支付</view>
       </view>
     </view>
   </view>

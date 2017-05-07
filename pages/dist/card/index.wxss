@@ -8,8 +8,8 @@
 }
 
 .zan-card__thumb {
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
   float: left;
   position: relative;
   margin-left: auto;
@@ -32,7 +32,7 @@
 }
 
 .zan-card__detail {
-  margin-left: 100px;
+  margin-left: 80px;
   width: auto;
   position: relative;
 }

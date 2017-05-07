@@ -4,7 +4,7 @@ var Zan = require('../../../dist/index');
 
 var app = getApp();
 
-Page(Object.assign({}, Zan.Switch, {
+Page(Object.assign({}, Zan.Switch, Zan.Toast, {
     data: {
         id: '', // 收货地址唯一标识
         provinceName: [],
@@ -228,6 +228,34 @@ Page(Object.assign({}, Zan.Switch, {
      */
     saveConsignmentAddress: function () {
         var that = this;
+        if (util.isNull(that.data.name)) {
+            that.showToast("收件人姓名不能为空");
+            return;
+        }
+        if (util.isNull(that.data.mobile)) {
+            that.showToast("手机号码不能为空");
+            return;
+        }
+        if (!util.checkPhoneNumber(that.data.mobile)) {
+            that.showToast("联系方式格式填写不正确");
+            return;
+        }
+        if (util.isNull(that.data.selectProvinceCode)) {
+            that.showToast("请选择省份");
+            return;
+        }
+        if (util.isNull(that.data.selectCityCode)) {
+            that.showToast("请选择城市");
+            return;
+        }
+        if (util.isNull(that.data.selectAreaCode)) {
+            that.showToast("请选择区县");
+            return;
+        }
+        if (util.isNull(that.data.address)) {
+            that.showToast("详细地址不能为空");
+            return;
+        }
         var isUsing = (that.data.checked) ? 1 : 0;
         var param = {
             "id": that.data.id, // 收货地址唯一标识
@@ -248,5 +276,9 @@ Page(Object.assign({}, Zan.Switch, {
                     url: "../consignee-address/consignment-address"
                 });
             });
+    },
+
+    showToast: function (title) {
+        this.showZanToast(title);
     }
 }));

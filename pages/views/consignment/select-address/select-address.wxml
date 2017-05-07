@@ -1,4 +1,6 @@
 <import src="../../../dist/switch/index.wxml" />
+<import src="../../../dist/toast/index.wxml" />
+
 <view class="container">
   <view class="zan-form">
     <view class="zan-cell zan-form__item">
@@ -55,4 +57,7 @@
       <button class="zan-btn zan-btn--primary" bindtap="saveConsignmentAddress">保存</button>
     </view>
   </view>
+
+    <template is="zan-toast" data="{{ zanToast }}"></template>
+
 </view>

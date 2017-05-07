@@ -1,9 +1,10 @@
 var httpClient = require('../../../../utils/httpClient.js');
 var util = require('../../../../utils/util.js');
+var Zan = require('../../../dist/index');
 
 var app = getApp();
 
-Page({
+Page(Object.assign({}, Zan.Toast, {
     data: {
         'printPhoto': [], // 打印照片信息
         'pageNum': 1,
@@ -107,7 +108,7 @@ Page({
             }
         }
         if (util.isNull(id)) {
-            util.showLoading("亲，麻烦你选择一下需要打印的照片记录！");
+            that.showToast("亲，麻烦你选择一下需要打印的照片记录！");
             return;
         }
         // 保存订单信息
@@ -166,5 +167,9 @@ Page({
                     }
                 }
             });
+    },
+
+    showToast: function (title) {
+        this.showZanToast(title);
     }
-})
+}));

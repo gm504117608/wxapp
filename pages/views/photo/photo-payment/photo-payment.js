@@ -4,7 +4,7 @@ var Zan = require('../../../dist/index');
 
 var app = getApp();
 
-Page(Object.assign({}, Zan.Quantity, {
+Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     data: {
         'orderNo': '',
         'printPhoto': [], // 打印照片信息
@@ -90,6 +90,8 @@ Page(Object.assign({}, Zan.Quantity, {
      * 修改配送方式
      */
     dispatchingWayChange: function (event) {
+        console.log(event);
+        var that = this;
         var value = event.detail.value;
         that.setData({ 'dispatchingWay': value });
     },
@@ -100,16 +102,19 @@ Page(Object.assign({}, Zan.Quantity, {
     paymentOrder: function () {
         var that = this;
         var printPhoto = that.data.printPhoto;
-        if(util.isNull(printPhoto)){
-            wx.showToast({ title: '无打印照片信息' });
+        if (util.isNull(printPhoto)) {
+            that.showToast('无打印照片信息');
+            return;
         }
         var consignmentAddress = that.data.consignmentAddress;
-        if(util.isNull(consignmentAddress)){
-            wx.showToast({ title: '请选择收货地址' });
+        if (util.isNull(consignmentAddress)) {
+            that.showToast('请选择收货地址');
+            return;
         }
         var dispatchingWay = that.data.dispatchingWay;
-        if(util.isNull(dispatchingWay)){
-            wx.showToast({ title: '请选择配送方式' });
+        if (util.isNull(dispatchingWay)) {
+            that.showToast('请选择配送方式');
+            return;
         }
         var ids = '';
         var amounts = '';
@@ -132,5 +137,9 @@ Page(Object.assign({}, Zan.Quantity, {
                 var path = "../../order/payment";
                 wx.redirectTo({ url: path });
             });
+    },
+
+    showToast: function (title) {
+        this.showZanToast(title);
     }
 }));

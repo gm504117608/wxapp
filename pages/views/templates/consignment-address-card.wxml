@@ -2,10 +2,10 @@
 <!-- 收件地址信息显示模板 -->
 <template name="consignment-address-card">
   <view class="zan-panel">
-    <view class="zan-card" data-consignment-address-id="{{address.id}}" bindtap="updateConsignmentAddress">
+    <view class="zan-card-consignee" data-consignment-address-id="{{address.id}}" bindtap="updateConsignmentAddress">
       <view class="zan-card__detail-row">
         <view class="zan-card__right-col">{{address.mobile}}</view>
-        <view class="zan-card__left-col zan-ellipsis--l2">{{address.name}}</view>
+        <view class="zan-card__left-col">{{address.name}}</view>
       </view>
       <view class="zan-card__detail-row zan-c-gray-darker" style="font-size: 12px">
         <view class="zan-card__right-col">默认地址:{{address.isUsing == 1 ? '是' : '否'}}</view>

@@ -1,12 +1,14 @@
 <view class="container">
   <view class="zan-panel">
-    <view>收件人信息</view>
-    <view class="zan-cell">
-      <view class="zan-cell__bd">{{detail.name}}</view>
-      <view class="zan-cell__ft">{{detail.mobile}}</view>
-    </view>
-    <view class="zan-cell">
-      <view class="zan-cell__bd">{{detail.address}}</view>
+    <view class="zan-card-consignee">
+      <view class="zan-card__detail-row">
+        <view class="zan-card__right-col">{{detail.mobile}}</view>
+        <view class="zan-card__left-col">{{detail.name}}</view>
+      </view>
+      <view class="zan-card__detail-row zan-c-gray-darker" style="font-size: 12px">
+        <view class="zan-card__right-col"></view>
+        <view class="zan-card__left-col">{{detail.address}} </view>
+      </view>
     </view>
   </view>
   <view class="zan-panel">

@@ -1,3 +1,5 @@
+<import src="../../dist/toast/index.wxml" />
+
 <view class="container">
   <view class="zan-panel">
     <view class="zan-card">
@@ -29,4 +31,7 @@
       <button class="zan-btn zan-btn--primary" bindtap="saveUserInfo">保存</button>
     </view>
   </view>
+
+    <template is="zan-toast" data="{{ zanToast }}"></template>
+
 </view>

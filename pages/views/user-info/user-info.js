@@ -1,9 +1,11 @@
 var httpClient = require('../../../utils/httpClient.js');
 var util = require('../../../utils/util.js');
+var Zan = require('../../dist/index');
+
 
 var app = getApp();
 
-Page({
+Page(Object.assign({}, Zan.Toast, {
     data: {
         nickName: '',
         avatarUrl: '',
@@ -56,6 +58,14 @@ Page({
      */
     saveUserInfo: function () {
         var that = this;
+        if (util.isNull(that.data.mobile)) {
+            that.showToast("手机号码不能为空");
+            return;
+        }
+        if (!util.checkPhoneNumber(that.data.mobile)) {
+            that.showToast("联系方式格式填写不正确");
+            return;
+        }
         var param = {
             "id": wx.getStorageSync('memberId'),// 会员唯一标识id
             "mobile": that.data.mobile,
@@ -69,5 +79,9 @@ Page({
                     url: "../myself/myself-index"
                 });
             });
+    },
+
+    showToast: function (title) {
+        this.showZanToast(title);
     }
-});
+}));

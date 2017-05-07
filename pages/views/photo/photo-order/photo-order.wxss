@@ -8,12 +8,12 @@
 }
 
 .zan-panel-btn-none {
-  padding: 15px;
+  padding: 6px;
   display: none;
 }
 
 .zan-panel-btn-block {
-  padding: 15px;
+  padding: 6px;
   display: block;
 }
 
