@@ -49,4 +49,8 @@
       </view>
     </view>
   </view>
+  <view class="zan-panel" style="position: fixed; bottom: 0rpx; width: 100%; height: 50px">
+    <view class="zan-card__right" bindtap="paymentOrder" data-order-no="{{detail.orderNo}}">结算</view>      
+    <view class="zan-card__left">￥：{{detail.cost}}</view>
+  </view>
 </view>

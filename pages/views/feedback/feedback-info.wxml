@@ -14,7 +14,7 @@
   <view class="zan-panel-feedback">
     <view class="zan-cell">
       <text class="zan-form__title">联系电话</text>
-      <input class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话" bindblur="blurMobile" value="{{mobile}}" />
+      <input class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机号码" bindblur="blurMobile" value="{{mobile}}" />
     </view>
   </view>
   <view class="zan-panel-title">反馈内容</view>
