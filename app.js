@@ -43,7 +43,7 @@ App({
 
   globalParam: {
     userInfo: null,
-    serverUrl: "http://localhost:8080/api/",
+    serverUrl: "https://sseek.cn/api/",
     pageSize: 10,
     shopId: ''
   }

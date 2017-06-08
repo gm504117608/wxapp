@@ -17,12 +17,16 @@ function request(url, param, method, success, fail, isShowLoading) {
   if (isShowLoading) {
     wx.showLoading({ "title": "正在加载中...", "mask": true });
   }
+  var token = wx.getStorage({ key: 'token' });
+  if (typeof (token) == "undefined") {
+    token = '';
+  }
   wx.request({
     url: app.globalParam.serverUrl + url,
     data: param,
     header: {
       'content-type': 'application/json',
-      'token': wx.getStorage({ key: 'token' })
+      'token': token
     },
     method: method,
     dataType: "json",
@@ -38,6 +42,7 @@ function request(url, param, method, success, fail, isShowLoading) {
       }
     },
     fail: function (res) {
+      console.log(res);
       util.showModal("亲，系统生病了需要去看医生。");
       if (null != fail && (typeof fail) == 'function') {
         fail(res);
