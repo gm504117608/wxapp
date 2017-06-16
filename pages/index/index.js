@@ -28,7 +28,10 @@ Page({
             data: response.token
           });
           // 将用户id存入缓存
-          wx.setStorageSync("memberId", response.id);
+          wx.setStorage({
+            key: "memberId",
+            data: response.id
+          });
         });
     });
   },

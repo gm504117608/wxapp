@@ -17,7 +17,7 @@ function request(url, param, method, success, fail, isShowLoading) {
   if (isShowLoading) {
     wx.showLoading({ "title": "正在加载中...", "mask": true });
   }
-  var token = wx.getStorage({ key: 'token' });
+  var token = wx.getStorageSync('token');
   if (typeof (token) == "undefined") {
     token = '';
   }
