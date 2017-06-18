@@ -20,12 +20,29 @@ Page({
     );
   },
 
+  /**
+   * 支付订单
+   */
   paymentOrder: function (event) {
     var orderNo = event.currentTarget.dataset.orderNo;
-    var url = "/orders/" + orderNo;    
+    var url = "/payment/" + orderNo;
     httpClient.request(url, {}, "GET",
       function (response) {
-        that.setData({ detail: response });
+        wx.requestPayment({
+          'timeStamp': response.timestamp,
+          'nonceStr': response.noncestr,
+          'package': "prepay_id=" + response.prepayid,
+          'signType': 'MD5',
+          'paySign': response.sign,
+          'success': function (res) {
+            // 支付成功成功回到订单详情界面
+
+          },
+          'fail': function (res) {
+            // 支付失败给出提示
+
+          }
+        });
       }
     );
   },

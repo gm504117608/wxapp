@@ -1,56 +1,82 @@
 <view class="container">
   <view class="zan-panel">
-    <view class="zan-card-consignee">
-      <view class="zan-card__detail-row">
-        <view class="zan-card__right-col">{{detail.mobile}}</view>
-        <view class="zan-card__left-col">{{detail.name}}</view>
-      </view>
-      <view class="zan-card__detail-row zan-c-gray-darker" style="font-size: 12px">
-        <view class="zan-card__right-col"></view>
-        <view class="zan-card__left-col">{{detail.address}} </view>
+    <view class="zan-card">
+      <view class="zan-card__detail-row zan-card-big-font">
+        <view class="zan-card__right-col" style="color: blue">{{detail.statusName}}</view>
+        <view class="zan-card__left-col">{{detail.shopName}}</view>
       </view>
     </view>
   </view>
   <view class="zan-panel">
-    <view>订单信息</view>
     <view class="zan-cell">
-      <view class="zan-cell__bd">{{detail.shopName}}</view>
+      <view class="zan-cell__bd">联系人：</view>
+      <view class="zan-cell__ft">{{detail.name}}</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">联系方式：</view>
+      <view class="zan-cell__ft">{{detail.moblie}}</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">收件地址：</view>
+      <view class="zan-cell__ft">{{detail.address}}</view>
+    </view>
+  </view>
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">订单号：</view>
       <view class="zan-cell__ft">{{detail.orderNo}}</view>
     </view>
     <view class="zan-cell">
-      <view class="zan-cell__bd" style="color: red">金额:{{detail.cost}}</view>
-      <view class="zan-cell__ft">{{detail.statusName}}</view>
+      <view class="zan-cell__bd">金额:</view>
+      <view class="zan-cell__ft" style="color: red">￥{{detail.cost}}</view>
     </view>
     <view class="zan-cell">
-      <view class="zan-cell__bd">{{detail.remark}}</view>
+      <view class="zan-cell__bd">创建时间：</view>
       <view class="zan-cell__ft">{{detail.createTime}}</view>
     </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">备注：</view>
+      <view class="zan-cell__ft">{{detail.remark}}</view>
+    </view>
   </view>
-  <view class="zan-panel">
-    <view>订单详细信息</view>
-    <view wx:key="storeUrl" wx:for="{{detail.printPhotoList}}" wx:for-item="item">
+  <view>
+    <view class="zan-panel" wx:key="storeUrl" wx:for="{{detail.printPhotoList}}" wx:for-item="item">
       <view class="zan-card">
         <view class="zan-card__thumb">
           <image class="zan-card__img" src="{{serverUrl}}{{item.storeUrl}}" mode="aspectFit"></image>
         </view>
         <view class="zan-card__detail">
-          <view class="zan-card__detail-row">
-            <view class="zan-card__left-col zan-ellipsis--l2">
-              {{item.description}}
-            </view>
+          <view class="zan-card__detail-row" style="margin-bottom: 20px">
+            <view>{{item.remark}}</view>
           </view>
           <view class="zan-card__detail-row zan-c-gray-darker">
-            <view class="zan-card__right-col">{{item.type}} </view>
-            <view class="zan-card__left-col">
-              打印数量:{{item.amount}}
-            </view>
+            <view class="zan-card__right-col">规格：{{item.type}}</view>
+            <view class="zan-card__left-col">数量：{{item.amount}}</view>
           </view>
         </view>
       </view>
     </view>
   </view>
-  <view class="zan-panel" style="position: fixed; bottom: 0rpx; width: 100%; height: 50px">
-    <view class="zan-card__right" bindtap="paymentOrder" data-order-no="{{detail.orderNo}}">结算</view>      
-    <view class="zan-card__left">￥：{{detail.cost}}</view>
+  <view wx:if="{{detail.status != 'S01'}}">
+    <view class="zan-panel">
+      <view class="zan-cell">
+        <view class="zan-cell__bd">支付流水号：</view>
+        <view class="zan-cell__ft">00000</view>
+      </view>
+      <view class="zan-cell">
+        <view class="zan-cell__bd">支付金额:</view>
+        <view class="zan-cell__ft" style="color: red">￥0.00</view>
+      </view>
+      <view class="zan-cell">
+        <view class="zan-cell__bd">支付时间：</view>
+        <view class="zan-cell__ft">xxxx-xx-xx xx:xx:xx</view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{detail.status === 'S01'}}">
+    <view class="zan-panel" style="width: 100%; height: 50px">
+      <view class="zan-card__right" bindtap="paymentOrder" data-order-no="{{detail.orderNo}}">结算</view>
+      <view class="zan-card__left">￥：{{detail.cost}}</view>
+    </view>
   </view>
 </view>

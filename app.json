@@ -12,7 +12,6 @@
     "pages/views/photo/photo-handle/photo-handle",
     "pages/views/photo/photo-order/photo-order",
     "pages/views/photo/photo-payment/photo-payment", 
-    "pages/views/order/payment/payment", 
     "pages/views/order/show/show",
     "pages/views/order/details/details"    
   ],

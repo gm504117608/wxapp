@@ -27,3 +27,12 @@
   font-size: 20px;
   padding-top: 17px;
 }
+
+.zan-card-big-font {
+  font-size: 18px;
+  padding-top:8px;
+}
+
+.zan-card-small-font {
+  font-size: 10px;
+}
