@@ -5,21 +5,21 @@
     </view>
   </view>
   <view class="zan-form">
-    <view class="zan-cell zan-form__item">
+    <!--<view class="zan-cell zan-form__item">
       <text class="zan-form__title">裁剪</text>
       <input class="zan-form__input zan-cell__bd" bindblur="blurClipping" value="{{clipping}}" />
     </view>
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">排版</text>
       <input class="zan-form__input zan-cell__bd" bindblur="blurTypesetting" value="{{typesetting}}" />
-    </view>
+    </view>-->
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">签名</text>
-      <textarea class="zan-form__input zan-cell__bd" maxlength="40" style="height: 60px; width: auto" placeholder="照片签名描述" bindblur="blurDescription" value="{{description}}" />
+      <textarea class="zan-form__input zan-cell__bd" maxlength="40" style="height: 60px; width: auto" placeholder="照片上面需要打印上去的签名" bindblur="blurDescription" value="{{description}}" />
     </view>
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">备注</text>
-      <textarea class="zan-form__input zan-cell__bd" maxlength="100" style="height: 100px; width: auto" placeholder="一些特殊的要求可以在这里描述" bindblur="blurRemark" value="{{remark}}" />
+      <textarea class="zan-form__input zan-cell__bd" maxlength="100" style="height: 100px; width: auto" placeholder="一些特殊的要求可以在这里描述，比如照片排版、剪切方式等" bindblur="blurRemark" value="{{remark}}" />
     </view>
   </view>
   <view class="zan-panel" style="padding: 15px;">

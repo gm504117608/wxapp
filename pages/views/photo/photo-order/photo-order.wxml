@@ -11,12 +11,10 @@
     </view>
     <view class="loading complete" hidden="{{!searchLoadingComplete}}">我是有底线的</view>
   </block>
-  <view class="zan-panel {{isClickOrder ? 'zan-panel-btn-none' : 'zan-panel-btn-block'}}" style="position: fixed; bottom: 0rpx; width: 100%">
-    <button class="zan-btn zan-btn--small zan-btn--primary" bindtap="selectOrderRecords">下单</button>
-  </view>
-  <view class="zan-panel {{isClickOrder ? 'zan-panel-btn-block' : 'zan-panel-btn-none'}}" style="position: fixed; bottom: 0rpx; width: 100%">
-    <button class="zan-btn zan-btn--small" bindtap="cancelOrderRecords">取消</button>
-    <button class="zan-btn zan-btn--small zan-btn--primary" bindtap="confirmOrderRecords">确定</button>
+  <view class="zan-panel">
+    <view class="zan-btns">
+      <button class="zan-btn zan-btn--primary" bindtap="confirmOrderRecords">下单</button>
+    </view>
   </view>
   <template is="zan-toast" data="{{ zanToast }}"></template>
 </view>

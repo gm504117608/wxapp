@@ -3,7 +3,7 @@
 }
 
 .zan-card__detail-padding {
-  padding-top: 10px;
+  padding-top: 3px;
 }
 
 .zan-cost {

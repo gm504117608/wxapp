@@ -1,7 +1,7 @@
 .zan-card {
   margin-left: 0px;
   width: auto;
-  padding: 5px 15px;
+  padding: 5px 10px;
   overflow: hidden;
   position: relative;
   font-size: 14px;
@@ -16,7 +16,7 @@
   margin-right: auto;
   overflow: hidden;
   background-size: cover;
-  border-radius:100px;
+  border-radius: 100px;
 }
 
 .zan-card__img {
@@ -41,7 +41,8 @@
   overflow: hidden;
   line-height: 20px;
   min-height: 20px;
-  margin-bottom: 3px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .zan-card__right-col {
@@ -51,4 +52,3 @@
 .zan-card__left-col {
   margin-right: 80px;
 }
-

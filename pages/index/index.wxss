@@ -4,3 +4,7 @@
   text-align: center;
   font-size: 15px;
 }
+
+.zan-card__left-font {
+  font-size: 10px;
+}
