@@ -8,3 +8,7 @@
   border-radius: 8px;
   box-shadow: 3px 3px 6px #666;
 }
+
+.zan-card__left-font {
+  font-size: 10px;
+}

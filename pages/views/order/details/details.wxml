@@ -14,7 +14,7 @@
     </view>
     <view class="zan-cell">
       <view class="zan-cell__bd">联系方式：</view>
-      <view class="zan-cell__ft">{{detail.moblie}}</view>
+      <view class="zan-cell__ft">{{detail.mobile}}</view>
     </view>
     <view class="zan-cell">
       <view class="zan-cell__bd">收件地址：</view>
@@ -29,6 +29,10 @@
     <view class="zan-cell">
       <view class="zan-cell__bd">金额:</view>
       <view class="zan-cell__ft" style="color: red">￥{{detail.cost}}</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">配送方式:</view>
+      <view class="zan-cell__ft">{{detail.dispatchingWayName}}</view>
     </view>
     <view class="zan-cell">
       <view class="zan-cell__bd">创建时间：</view>

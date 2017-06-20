@@ -1,5 +1,5 @@
 .zan-card__left-font {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .zan-card__detail-padding {
@@ -10,4 +10,31 @@
   color: #ff3030;
   float: right;
   padding-top: 7px;
+}
+
+.zan-card__right {
+  float: right;
+  background-color: #f4a460;
+  height: 50px;
+  width: 80px;
+  padding-top: 17px;
+  padding-left: 50px;
+  color: white;
+}
+
+.zan-card__left {
+  margin-right: 140px;
+  color: red;
+  height: 50px;
+  float: right;
+  font-size: 20px;
+  padding-top: 17px;
+}
+
+.zan-card__detail-address-row {
+  overflow: hidden;
+  line-height: 15px;
+  min-height: 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }

@@ -37,7 +37,7 @@ Page(Object.assign({}, Zan.Switch, {
    */
   consignmentAddress: function () {
     wx.redirectTo({
-      url: "../consignment/consignee-address/consignment-address"
+      url: "../consignee-address/show/show"
     });
   },
 

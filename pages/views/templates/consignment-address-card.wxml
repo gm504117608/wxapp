@@ -7,7 +7,7 @@
         <view class="zan-card__right-col">{{address.mobile}}</view>
         <view class="zan-card__left-col">{{address.name}}</view>
       </view>
-      <view class="zan-card__detail-row zan-c-gray-darker" style="font-size: 12px">
+      <view class="zan-card__detail-row zan-c-gray-darker" style="font-size: 10px">
         <view class="zan-card__right-col">默认地址:{{address.isUsing == 1 ? '是' : '否'}}</view>
         <view class="zan-card__left-col">
           {{address.provinceName}}{{address.cityName}}{{address.areaName}}{{address.address}}

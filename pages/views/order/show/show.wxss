@@ -6,7 +6,6 @@
 
 .zan-card-big-font {
   font-size: 18px;
-  padding-top:8px;
 }
 
 .zan-card-small-font {

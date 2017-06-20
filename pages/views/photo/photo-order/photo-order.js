@@ -115,20 +115,9 @@ Page(Object.assign({}, Zan.Toast, {
       that.showToast("亲，麻烦你选择一下需要打印的照片记录！");
       return;
     }
-    // 保存订单信息
-    var url = "orders";
-    var param = {
-      'shopId': app.globalParam.shopId,
-      'memberId': wx.getStorageSync('memberId'),
-      'printPhotographIds': id.substring(1)
-    };
-    httpClient.request(url, param, "POST",
-      function (response) {
-        var path = "../photo-payment/photo-payment?id=" + id.substring(1) + "&orderNo=" + response;
-        wx.redirectTo({ url: path });
-      });
+    var path = "../photo-payment/photo-payment?id=" + id.substring(1);
+    wx.redirectTo({ url: path });
   },
-
 
   /**
    * 获取店铺会员上传历史照片信息

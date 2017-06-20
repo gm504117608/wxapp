@@ -1,4 +1,3 @@
-
 <!-- 用户信息显示模板 -->
 <template name="user-card">
   <view class="zan-panel">
@@ -8,16 +7,10 @@
       </view>
       <view class="zan-card__detail">
         <view class="zan-card__detail-row">
-          <view class="zan-card__right-col"></view>
-          <view class="zan-card__left-col zan-ellipsis--l2">
-            {{userInfo.nickName}}
-          </view>
+          {{userInfo.nickName}}
         </view>
         <view class="zan-card__detail-row zan-c-gray-darker">
-          <view class="zan-card__right-col"></view>
-          <view class="zan-card__left-col">
-            {{userInfo.province}} - {{userInfo.city}}
-          </view>
+          {{userInfo.province}} - {{userInfo.city}}
         </view>
       </view>
     </view>

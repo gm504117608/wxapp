@@ -5,16 +5,17 @@
     <template is="photo-payment-card" data="{{photo: item}}" />
   </view>
   <view class="zan-panel">
-    <view class="zan-card" bindtap="editConsignmentAddress">
-      <view class="zan-card__detail-row zan-c-gray-darker">
-        <view class="zan-card__right-col">{{consignmentAddress.name}} </view>
-        <view class="zan-card__left-col">
-          {{consignmentAddress.mobile}}
-        </view>
+    <view class="zan-card">
+      <view class="zan-card__detail-row">
+        <view class="zan-card__right-col">{{consignmentAddress.mobile}} </view>
+        <view class="zan-card__left-col">{{consignmentAddress.name}}</view>
       </view>
-      <view class="zan-card__detail-row zan-c-gray-darker">
-        <view class="zan-card__left-col">
-          {{consignmentAddress.address}}
+      <view class="zan-card__detail-row">
+        <view class="zan-card__right-col">
+          <button class="zan-btn zan-btn--small zan-btn--primary" style="height:20px; line-height:20px; font-size:10px;" bindtap="editConsignmentAddress">换</button>
+        </view>
+        <view class="zan-card__left-col zan-card__left-font">
+          {{consignmentAddress.provinceName}}{{consignmentAddress.cityName}}{{consignmentAddress.areaName}}{{consignmentAddress.address}}
         </view>
       </view>
     </view>
@@ -31,14 +32,30 @@
       </view>
     </view>
   </view>
+
   <template is="zan-toast" data="{{ zanToast }}"></template>
 
-  <view class="zan-panel" style="position:fixed; bottom:0rpx;">
-    <view class="zan-card">
-      <view class="zan-card__detail-row">
-        <view class="zan-card__right-col zan-cost">￥ {{cost}}</view>
-        <view class="zan-card__left-col" bindtap="paymentOrder">支付</view>
+  <view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+    <view class="zan-dialog__mask" bindtap="closeDialog" />
+    <view class="zan-dialog__container">
+      <view class="zan-panel" wx:key="id" wx:for="{{consignmentAddresses}}" wx:for-item="item">
+        <view class="zan-card" data-id="{{item.id}}" bindtap="selectConsignmentAddress">
+          <view class="zan-card__detail-address-row">
+            <view class="zan-card__right-col">{{item.mobile}} </view>
+            <view class="zan-card__left-col">{{item.name}}</view>
+          </view>
+          <view class="zan-card__detail-address-row">
+            <view class="zan-card__left-font">
+              {{item.provinceName}}{{item.cityName}}{{item.areaName}}{{item.address}}
+            </view>
+          </view>
+        </view>
       </view>
     </view>
+  </view>
+
+  <view class="zan-panel" style="width: 100%; height: 50px">
+    <view class="zan-card__right" bindtap="paymentOrder">支付</view>
+    <view class="zan-card__left">￥：{{cost}}</view>
   </view>
 </view>

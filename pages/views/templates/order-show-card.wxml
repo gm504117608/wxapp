@@ -6,16 +6,13 @@
         <view class="zan-card__right-col" style="color: blue">{{reservation.statusName}}</view>
         <view class="zan-card__left-col">{{reservation.shopName}}</view>
       </view>
-    </view>
-    <view class="zan-card">
       <view class="zan-card_detail-row">
         <view class="zan-c-gray-darker zan-card-small-font">订单号：{{reservation.orderNo}}</view>
       </view>
-    </view>
-    <view class="zan-card">
       <view class="zan-card__detail-row">
         <view class="zan-card__right-col" wx:if="{{reservation.status === 'S01'}}">
-          <button class="zan-btn zan-btn--small zan-btn--primary" data-order-no="{{reservation.orderNo}}" bindtap="paymentOrder">支付</button>
+          <button class="zan-btn zan-btn--small zan-btn--primary" data-order-no="{{reservation.orderNo}}" 
+          style="height:20px; line-height:20px; font-size:10px;" bindtap="paymentOrder">支付</button>
         </view>
         <view class="zan-card__left-col zan-card-big-font" style="color: red">￥{{reservation.cost}}</view>
       </view>
@@ -31,25 +28,21 @@
         <view class="zan-card__right-col" style="color: blue">{{reservation.statusName}}</view>
         <view class="zan-card__left-col">{{reservation.shopName}}</view>
       </view>
-    </view>
-    <view class="zan-card">
       <view class="zan-card_detail-row">
         <view class="zan-c-gray-darker zan-card-small-font">订单号：{{reservation.orderNo}}</view>
       </view>
-    </view>
-    <view class="zan-card">
       <view class="zan-card__detail-row">
         <view class="zan-card__right-col" wx:if="{{reservation.status === 'S01'}}">
           <button class="zan-btn zan-btn--small zan-btn--primary" data-order-no="{{reservation.orderNo}}" 
-          bindtap="paymentOrder">支付</button>
+          style="height:20px; line-height:20px; font-size:10px;" bindtap="paymentOrder">支付</button>
         </view>
         <view class="zan-card__right-col" wx:if="{{reservation.status === 'S03'}}">
           <button class="zan-btn zan-btn--small zan-btn--primary" data-order-no="{{reservation.orderNo}}" 
-          bindtap="confirmConsignment">确认收货</button>
+          style="height:20px; line-height:20px; font-size:10px;" bindtap="confirmConsignment">确认收货</button>
         </view>
         <view class="zan-card__right-col" wx:if="{{reservation.status === 'S04'}}">
           <button class="zan-btn zan-btn--small zan-btn--primary" data-order-no="{{reservation.orderNo}}" 
-          bindtap="estimateOrder">去评论</button>
+          style="height:20px; line-height:20px; font-size:10px;" bindtap="estimateOrder">评论</button>
         </view>
         <view class="zan-card__left-col zan-card-big-font" style="color: red">￥{{reservation.cost}}</view>
       </view>

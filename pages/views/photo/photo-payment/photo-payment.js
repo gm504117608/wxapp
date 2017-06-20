@@ -6,17 +6,17 @@ var app = getApp();
 
 Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   data: {
-    'orderNo': '',
     'printPhoto': [], // 打印照片信息
     'cost': 0, // 需要支付的金额
-    'consignmentAddress': {}, // 收件人地址
+    'consignmentAddress': {}, // 收件地址
+    'consignmentAddresses': [], // 该会员的全部收件地址
     'dispatchingWays': [], // 配送方式
-    'dispatchingWay': '' // 选择的配送方式
+    'dispatchingWay': '', // 选择的配送方式
+    'showDialog': false // 是否显示收件地址选择
   },
 
   onLoad: function (option) {
     var that = this;
-    that.setData({ 'orderNo': option.orderNo });
     var url = "/shops/payment/" + option.id;
     httpClient.request(url, {}, "GET",
       function (response) {
@@ -75,22 +75,36 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     var url = "consignment/members/" + wx.getStorageSync('memberId');
     httpClient.request(url, param, "GET",
       function (response) {
-        var len = response.length;
-        var address = {};
-        for (var i = 0; i < len; i++) {
-          if (response[i].isUsing == 1) {
-            address = response[i];
-          }
-        }
-        that.setData({ consignmentAddress: address });
+        that.setData({ 'consignmentAddresses': response, 'showDialog': true });
       });
+  },
+
+  /**
+   * 选择收件地址
+   */
+  selectConsignmentAddress: function (event) {
+    var id = event.currentTarget.dataset.id;
+    var that = this;
+    var consignmentAddresses = that.data.consignmentAddresses;
+    var len = consignmentAddresses.length;
+    for (var i = 0; i < len; i++) {
+      if (id == consignmentAddresses[i].id) {
+        that.setData({ 'consignmentAddress': consignmentAddresses[i], 'showDialog': false });
+      }
+    }
+  },
+
+  /**
+   * 关闭弹出收件地址选择框
+   */
+  closeDialog: function () {
+    this.setData({ 'showDialog': false });
   },
 
   /**
    * 修改配送方式
    */
   dispatchingWayChange: function (event) {
-    console.log(event);
     var that = this;
     var value = event.detail.value;
     that.setData({ 'dispatchingWay': value });
@@ -125,16 +139,18 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     }
     var param = {
       'cost': that.data.cost,
-      'orderNo': that.data.orderNo,
       'ids': ids.substring(1),
       'amounts': amounts.substring(1),
       'consignmentId': consignmentAddress.id,
-      'dispatchingWay': dispatchingWay
+      'dispatchingWay': dispatchingWay,
+      'shopId': app.globalParam.shopId,
+      'memberId': wx.getStorageSync('memberId')
     };
-    var url = "/orders/payment";
+    var url = "/orders";
     httpClient.request(url, param, "POST",
       function (response) {
-        var path = "../../order/details/details?orderNo=" + that.data.orderNo;
+        console.log(response);
+        var path = "../../order/details/details?orderNo=" + response;
         wx.redirectTo({ url: path });
       });
   },

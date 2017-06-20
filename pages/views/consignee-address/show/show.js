@@ -24,7 +24,7 @@ Page({
    */
   createConsignmentAddress: function () {
     wx.redirectTo({
-      url: "../select-address/select-address"
+      url: "../details/details"
     });
   },
 
@@ -34,7 +34,7 @@ Page({
   updateConsignmentAddress: function (event) {
     var id = event.currentTarget.dataset.consignmentAddressId;
     wx.redirectTo({
-      url: '../select-address/select-address?id=' + id,
+      url: '../details/details?id=' + id,
     });
   }
 
