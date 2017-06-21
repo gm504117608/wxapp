@@ -27,9 +27,13 @@ App({
         var code = response.code;
         wx.getUserInfo({
           success: function (response) {
+            console.log(response);
             // 设置全局用户信息数据
             that.globalParam.userInfo = response.userInfo;
             that.globalParam.userInfo['code'] = code;
+            that.globalParam.userInfo['encryptedData'] = response.encryptedData;
+            that.globalParam.userInfo['iv'] = response.iv;
+            that.globalParam.userInfo['sign'] = response.signature;
             // 回调函数
             callBack(that.globalParam.userInfo);
           }
@@ -42,7 +46,7 @@ App({
   },
 
   globalParam: {
-    userInfo: null,
+    userInfo: {},
     serverUrl: "http://localhost:8080/api/",
     pageSize: 10,
     shopId: ''

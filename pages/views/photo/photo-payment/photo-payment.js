@@ -17,7 +17,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
 
   onLoad: function (option) {
     var that = this;
-    var url = "/shops/payment/" + option.id;
+    var url = "shops/payment/" + option.id;
     httpClient.request(url, {}, "GET",
       function (response) {
         that.setData({
@@ -146,7 +146,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       'shopId': app.globalParam.shopId,
       'memberId': wx.getStorageSync('memberId')
     };
-    var url = "/orders";
+    var url = "orders";
     httpClient.request(url, param, "POST",
       function (response) {
         console.log(response);

@@ -18,7 +18,7 @@ Page({
     var that = this;
     var id = option.id;
     if (util.isNotNull(id)) { // 修改
-      var url = "/shops/photos/" + id;
+      var url = "shops/photos/" + id;
       httpClient.request(url, {}, "GET",
         function (response) {
           that.setData({
@@ -95,13 +95,13 @@ Page({
     };
     var filePath = that.data.photoPath;
     if (util.isNull(id) || filePath.indexOf("http") < 0) {
-      httpClient.uploadFile("/shops/photo/upload", param, filePath,
+      httpClient.uploadFile("shops/photo/upload", param, filePath,
         function (response) {
           var path = "../photo-order/photo-order";
           wx.redirectTo({ url: path });
         });
     } else {
-      httpClient.request("/shops/photos", param, "POST",
+      httpClient.request("shops/photos", param, "POST",
         function (response) {
           var path = "../photo-order/photo-order";
           wx.redirectTo({ url: path });

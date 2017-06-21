@@ -27,17 +27,17 @@ Page({
     var code = event.currentTarget.dataset.photoCode;
     var that = this;
     that.setData({ 'type': code });
+    var count = 9;
     wx.chooseImage({
-      count: 4, // 默认9
+      count: count, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (response) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         // 保存图片到服务器
-        that.savePrintPhotoInfo(response.tempFilePaths[0]);
-        that.savePrintPhotoInfo(response.tempFilePaths[1]);
-        that.savePrintPhotoInfo(response.tempFilePaths[2]);
-        that.savePrintPhotoInfo(response.tempFilePaths[3]);
+        for (var i = 0; i < count; i++) {
+          that.savePrintPhotoInfo(response.tempFilePaths[i]);
+        }
         var path = "../photo-order/photo-order";
         wx.redirectTo({ url: path });
       }
@@ -54,7 +54,7 @@ Page({
       'shopId': app.globalParam.shopId,
       'type': that.data.type
     };
-    httpClient.uploadFile("/shops/photo/upload", param, filePath,
+    httpClient.uploadFile("shops/photo/upload", param, filePath,
       function (response) { });
   },
 

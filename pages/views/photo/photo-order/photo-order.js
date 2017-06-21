@@ -68,7 +68,7 @@ Page(Object.assign({}, Zan.Toast, {
       content: '主人，求不离不弃',
       success: function (res) {
         if (res.confirm) {
-          httpClient.request("/shops/photo/delete/" + id, param, "POST",
+          httpClient.request("shops/photo/delete/" + id, param, "POST",
             function (response) {
               // 刷新数据
               that.onPullDownRefresh();
@@ -128,7 +128,7 @@ Page(Object.assign({}, Zan.Toast, {
       return;
     }
     var printPhoto = that.data.printPhoto;
-    var url = "/shops/photos?shopId=" + app.globalParam.shopId + "&memberId=" + wx.getStorageSync('memberId') +
+    var url = "shops/photos?shopId=" + app.globalParam.shopId + "&memberId=" + wx.getStorageSync('memberId') +
       "&pageNum=" + that.data.pageNum + "&pageSize=" + that.data.pageSize;;
     httpClient.request(url, {}, "GET",
       function (response) {
